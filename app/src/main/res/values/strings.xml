@@ -10,4 +10,17 @@
     <string name="confirm_login_pin">Confirm login pin</string>
     <string name="login_lbl">Login</string>
     <string name="signup_lbl">SignUp</string>
+    <string name="emptyPinMessage">Pin must not be empty.</string>
+    <string name="pinDoesNotMatch">Pin and confirm pin doesn\'t match</string>
+    <string name="signUpSuccess">You have successfully signed up.</string>
+    <string name="loginSuccess">Login Success.</string>
+    <string name="userNotFound">User not found</string>
+    <string name="save">Save</string>
+    <string name="urlMustNotBeEmpty">Url must not be empty.</string>
+    <string name="userNameMustNotBeEmpty">User name must not be empty.</string>
+    <string name="passwordMustNotBeEmpty">Password must not be empty.</string>
+    <string name="recordAddedSucessfully">Record added successfully</string>
+    <string name="record">Record</string>
+    <string name="addRecord">Add Record</string>
+    <string name="recordDeletedSuccessfully">Record deleted successfully.</string>
 </resources>

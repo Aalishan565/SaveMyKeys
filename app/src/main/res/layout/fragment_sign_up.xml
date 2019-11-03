@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/dimen_20dp"
     android:gravity="center">
 
     <EditText
@@ -12,38 +12,36 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="@string/set_login_pin"
+        android:imeOptions="actionNext"
         android:inputType="numberPassword"
         android:maxLength="5"
         android:minHeight="@dimen/dimen_50dp"
-        android:textSize="@dimen/dimen_20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:singleLine="true"
+        android:textSize="@dimen/dimen_20sp" />
 
     <EditText
         android:id="@+id/etConfirmPin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/etPin"
         android:layout_marginTop="@dimen/dimen_20dp"
         android:gravity="center"
         android:hint="@string/confirm_login_pin"
         android:inputType="numberPassword"
         android:maxLength="5"
         android:minHeight="@dimen/dimen_50dp"
-        android:textSize="@dimen/dimen_20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPin" />
+        android:textSize="@dimen/dimen_20sp" />
 
     <Button
         android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_50dp"
+        android:layout_below="@+id/etConfirmPin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimen_20dp"
         android:width="@dimen/dimen_100dp"
-        android:text="@string/signUp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etConfirmPin">
+        android:text="@string/signUp">
 
     </Button>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

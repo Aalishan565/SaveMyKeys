@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/dimen_20sp"
+    android:gravity="center">
+
 
     <EditText
         android:id="@+id/etPin"
@@ -11,23 +13,19 @@
         android:gravity="center"
         android:hint="@string/enter_login_pin"
         android:inputType="numberPassword"
-        android:minHeight="@dimen/dimen_50dp"
         android:maxLength="5"
-        android:textSize="@dimen/dimen_20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:minHeight="@dimen/dimen_50dp"
+        android:textSize="@dimen/dimen_20sp" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_50dp"
+        android:layout_below="@+id/etPin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimen_20dp"
         android:width="@dimen/dimen_100dp"
-        android:text="@string/login"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPin">
+        android:text="@string/login">
 
     </Button>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

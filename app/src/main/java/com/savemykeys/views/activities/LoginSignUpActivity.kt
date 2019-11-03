@@ -11,6 +11,7 @@ import com.savemykeys.R
 
 
 class LoginSignUpActivity : AppCompatActivity() {
+
     private lateinit var viewPagerAdapter: ViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {

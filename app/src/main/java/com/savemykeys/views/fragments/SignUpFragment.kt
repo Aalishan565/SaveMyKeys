@@ -1,23 +1,28 @@
 package com.savemykeys.views.fragments
 
 
-import android.content.SharedPreferences
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
 import com.savemykeys.R
-import com.savemykeys.views.utils.AppPreference
+import com.savemykeys.views.activities.HomeActivity
+import com.savemykeys.views.impls.SignUpPresenterImpl
+import com.savemykeys.views.presenters.SignUpPresenter
+import com.savemykeys.views.listeners.SignUpViewListener
+import com.savemykeys.views.utils.AppUtils
+import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class SignUpFragment : Fragment() {
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
-    lateinit var appPreference: AppPreference
+class SignUpFragment : Fragment(), View.OnClickListener, SignUpViewListener {
+
+
+    private lateinit var signUpPresenter: SignUpPresenter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,8 +33,36 @@ class SignUpFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        appPreference=AppPreference()
+        signUpPresenter = context?.let { SignUpPresenterImpl(it, this) }!!
+        btnSignUp.setOnClickListener(this)
+    }
+
+    override fun onClick(view: View?) {
+        when (view) {
+            btnSignUp -> {
+                signUpPresenter.doSignUp(etPin.text.toString(), etConfirmPin.text.toString())
+
+            }
+        }
+    }
+
+    override fun showPinDoesNotMatchError(pinDoesNotMatch: Int) {
+        activity?.let { AppUtils.showToastMessageById(it, pinDoesNotMatch) }
+    }
+
+    override fun signUpSuccess(signUpSuccessMessage: Int) {
+        activity?.let { AppUtils.showToastMessageById(it, signUpSuccessMessage) }
+        var intent = Intent(activity, HomeActivity::class.java)
+        startActivity(intent)
+        activity?.finish()
+    }
+
+
+    override fun showEmptyPinError(emptyPinMessage: Int) {
+        activity?.let { AppUtils.showToastMessageById(it, emptyPinMessage) }
     }
 
 
 }
+
+
