@@ -1,9 +1,9 @@
-package com.savemykeys.views.application
+package com.savemykeys.application
 
 import android.app.Application
 import androidx.room.Room
 import com.savemykeys.db.AppDatabase
-import com.savemykeys.views.utils.Constants
+import com.savemykeys.utils.Constants
 
 class SaveMyKeysApplication : Application() {
     private var databaseInstance: AppDatabase? = null

@@ -4,7 +4,7 @@ import android.content.Context
 import com.savemykeys.R
 import com.savemykeys.views.presenters.LoginPresenter
 import com.savemykeys.views.listeners.LoginViewListener
-import com.savemykeys.views.utils.AppSharedPreference
+import com.savemykeys.utils.AppSharedPreference
 
 class LoginPresenterImpl(
     private val context: Context,

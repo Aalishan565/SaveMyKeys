@@ -1,4 +1,4 @@
-package com.savemykeys.views.utils
+package com.savemykeys.utils
 
 object Constants {
     val APP_PREFERENCE_NAME = "save_my_key"

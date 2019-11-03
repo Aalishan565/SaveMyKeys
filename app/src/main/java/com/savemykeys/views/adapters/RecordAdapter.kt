@@ -12,8 +12,8 @@ import com.savemykeys.views.activities.AddRecordActivity
 import com.savemykeys.views.impls.HomePresenterImpl
 import com.savemykeys.views.listeners.HomeViewListener
 import com.savemykeys.views.presenters.HomePresenter
-import com.savemykeys.views.utils.AppUtils
-import com.savemykeys.views.utils.Constants
+import com.savemykeys.utils.AppUtils
+import com.savemykeys.utils.Constants
 import kotlinx.android.synthetic.main.row_items_record.view.*
 import com.savemykeys.views.activities.HomeActivity
 

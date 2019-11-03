@@ -8,8 +8,8 @@ import com.savemykeys.R
 import com.savemykeys.db.entity.Record
 import com.savemykeys.views.impls.AddRecordPresenterImpl
 import com.savemykeys.views.listeners.AddRecordViewListener
-import com.savemykeys.views.utils.AppUtils
-import com.savemykeys.views.utils.Constants
+import com.savemykeys.utils.AppUtils
+import com.savemykeys.utils.Constants
 import kotlinx.android.synthetic.main.activity_add_record.*
 
 

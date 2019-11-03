@@ -5,7 +5,7 @@ import com.savemykeys.R
 import com.savemykeys.db.AppDatabase
 import com.savemykeys.db.daos.RecordDao
 import com.savemykeys.db.entity.Record
-import com.savemykeys.views.application.SaveMyKeysApplication
+import com.savemykeys.application.SaveMyKeysApplication
 import com.savemykeys.views.listeners.HomeViewListener
 import com.savemykeys.views.presenters.HomePresenter
 

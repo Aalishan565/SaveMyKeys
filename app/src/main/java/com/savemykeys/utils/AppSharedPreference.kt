@@ -1,4 +1,4 @@
-package com.savemykeys.views.utils
+package com.savemykeys.utils
 
 import android.content.Context
 

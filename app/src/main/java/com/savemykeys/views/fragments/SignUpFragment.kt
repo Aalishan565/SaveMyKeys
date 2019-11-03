@@ -12,7 +12,7 @@ import com.savemykeys.views.activities.HomeActivity
 import com.savemykeys.views.impls.SignUpPresenterImpl
 import com.savemykeys.views.presenters.SignUpPresenter
 import com.savemykeys.views.listeners.SignUpViewListener
-import com.savemykeys.views.utils.AppUtils
+import com.savemykeys.utils.AppUtils
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 /**

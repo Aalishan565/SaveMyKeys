@@ -11,7 +11,7 @@ import com.savemykeys.R
 import com.savemykeys.views.activities.HomeActivity
 import com.savemykeys.views.impls.LoginPresenterImpl
 import com.savemykeys.views.listeners.LoginViewListener
-import com.savemykeys.views.utils.AppUtils
+import com.savemykeys.utils.AppUtils
 import kotlinx.android.synthetic.main.fragment_login.*
 
 /**

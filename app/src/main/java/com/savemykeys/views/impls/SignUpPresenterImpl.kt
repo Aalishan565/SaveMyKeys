@@ -4,8 +4,7 @@ import android.content.Context
 import com.savemykeys.R
 import com.savemykeys.views.presenters.SignUpPresenter
 import com.savemykeys.views.listeners.SignUpViewListener
-import com.savemykeys.views.utils.AppSharedPreference
-import com.savemykeys.views.utils.Constants
+import com.savemykeys.utils.AppSharedPreference
 
 class SignUpPresenterImpl(private val context:Context, private val signUpViewListener: SignUpViewListener) : SignUpPresenter {
 

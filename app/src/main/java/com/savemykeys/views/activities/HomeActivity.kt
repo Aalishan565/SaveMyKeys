@@ -9,9 +9,8 @@ import com.savemykeys.db.AppDatabase
 import com.savemykeys.db.daos.RecordDao
 import com.savemykeys.db.entity.Record
 import com.savemykeys.views.adapters.RecordAdapter
-import com.savemykeys.views.application.SaveMyKeysApplication
-import com.savemykeys.views.utils.AppUtils
-import com.savemykeys.views.utils.Constants
+import com.savemykeys.application.SaveMyKeysApplication
+import com.savemykeys.utils.Constants
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
