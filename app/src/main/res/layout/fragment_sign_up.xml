@@ -6,42 +6,61 @@
     android:layout_margin="@dimen/dimen_20dp"
     android:gravity="center">
 
-    <EditText
-        android:id="@+id/etPin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/set_login_pin"
-        android:imeOptions="actionNext"
-        android:inputType="numberPassword"
-        android:maxLength="5"
-        android:minHeight="@dimen/dimen_50dp"
-        android:singleLine="true"
-        android:textSize="@dimen/dimen_20sp" />
-
-    <EditText
-        android:id="@+id/etConfirmPin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/etPin"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:gravity="center"
-        android:hint="@string/confirm_login_pin"
-        android:inputType="numberPassword"
-        android:maxLength="5"
-        android:minHeight="@dimen/dimen_50dp"
-        android:textSize="@dimen/dimen_20sp" />
-
-    <Button
-        android:id="@+id/btnSignUp"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etConfirmPin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dimen_20dp"
-        android:width="@dimen/dimen_100dp"
-        android:text="@string/signUp">
+        android:gravity="center"
+        android:orientation="vertical">
 
-    </Button>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilLogin"
+            android:layout_width="@dimen/dimen_200dp"
+            android:layout_height="wrap_content">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/set_login_pin"
+                android:inputType="numberPassword"
+                android:maxLength="5"
+                android:minHeight="@dimen/dimen_50dp"
+                android:textSize="@dimen/dimen_20sp">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfirmPin"
+            android:layout_width="@dimen/dimen_200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tilLogin">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmPin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/confirm_login_pin"
+                android:inputType="numberPassword"
+                android:maxLength="5"
+                android:minHeight="@dimen/dimen_50dp"
+                android:textSize="@dimen/dimen_20sp">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tilConfirmPin"
+            android:layout_marginTop="@dimen/dimen_20dp"
+            android:width="@dimen/dimen_100dp"
+            android:text="@string/signUp">
+
+        </Button>
+    </LinearLayout>
 </RelativeLayout>
+
+
+
