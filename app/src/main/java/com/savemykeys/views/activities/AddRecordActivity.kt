@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_add_record.*
 
 
 class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
-    private var isVisiblePwd: Boolean = false
     private var screenTitle: String? = null
     private var record: Record? = null
 
@@ -42,18 +41,20 @@ class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
                 etNote.text.toString()
             )
         }
+
+        ivPwdVisibility.setOnClickListener {  }
+
+
         ivPwdVisibility.setOnClickListener {
 
-            if (!isVisiblePwd) {
-                isVisiblePwd = true
+            if (!ivPwdVisibility.isChecked) {
                 etPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 etPassword.setSelection(etPassword.text.length)
-                ivPwdVisibility.setImageDrawable(getDrawable(R.drawable.ic_visibility_on_black_24dp))
+                ivPwdVisibility.setBackgroundResource(R.drawable.ic_visibility_on_black_24dp)
             } else {
                 etPassword.transformationMethod = PasswordTransformationMethod.getInstance()
                 etPassword.setSelection(etPassword.text.length)
-                ivPwdVisibility.setImageDrawable(getDrawable(R.drawable.ic_visibility_off_black_24dp))
-                isVisiblePwd = false
+                ivPwdVisibility.setBackgroundResource(R.drawable.ic_visibility_off_black_24dp)
             }
         }
     }

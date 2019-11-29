@@ -50,15 +50,21 @@
             android:inputType="textPassword"
             android:maxLines="1"></EditText>
 
-        <ImageView
+        <CheckBox
             android:id="@+id/ivPwdVisibility"
-            android:layout_width="@dimen/dimen_50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dimen_20dp"
             android:layout_alignParentRight="true"
+            android:button="@android:color/transparent"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_visibility_off_black_24dp">
+            android:background="@drawable/ic_visibility_off_black_24dp">
 
-        </ImageView>
+        </CheckBox>
+
+
+
+
     </RelativeLayout>
 
 
