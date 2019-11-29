@@ -52,6 +52,7 @@ class SignUpFragment : Fragment(), View.OnClickListener, SignUpViewListener {
 
     override fun signUpSuccess(signUpSuccessMessage: Int) {
         activity?.let { AppUtils.showToastMessageById(it, signUpSuccessMessage) }
+        signUpPresenter.deleteAllPreviousRecords()
         var intent = Intent(activity, HomeActivity::class.java)
         startActivity(intent)
         activity?.finish()

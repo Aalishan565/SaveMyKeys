@@ -41,10 +41,6 @@ class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
                 etNote.text.toString()
             )
         }
-
-        ivPwdVisibility.setOnClickListener {  }
-
-
         ivPwdVisibility.setOnClickListener {
 
             if (!ivPwdVisibility.isChecked) {

@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.savemykeys.db.entity.Record
+import com.savemykeys.utils.Constants
 
 
 @Dao
@@ -17,4 +18,10 @@ interface RecordDao {
 
     @Delete
     fun deleteRecord(record: Record)
+
+    @Query("DELETE FROM record_table")
+    fun deleteAllRecord()
+
+
+
 }
