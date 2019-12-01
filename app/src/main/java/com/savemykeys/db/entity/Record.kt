@@ -10,11 +10,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = "record_table")
 data class Record(
-
-    @PrimaryKey @NonNull @ColumnInfo(name = "url") val url: String,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "recordId") var recordId: Long?,
+    @ColumnInfo(name = "url") val url: String,
     @ColumnInfo(name = "user_name") val userName: String,
     @ColumnInfo(name = "password") val password: String,
     @ColumnInfo(name = "note") val note: String?
-) : Parcelable {
-
-}
+) : Parcelable

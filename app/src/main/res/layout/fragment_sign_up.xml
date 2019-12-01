@@ -7,14 +7,15 @@
     android:gravity="center">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/dimen_300dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilLogin"
-            android:layout_width="@dimen/dimen_200dp"
+            style="@style/TilOutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -32,9 +33,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilConfirmPin"
-            android:layout_width="@dimen/dimen_200dp"
+            style="@style/TilOutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tilLogin">
+            android:layout_marginTop="@dimen/dimen_20dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etConfirmPin"
@@ -51,11 +53,13 @@
 
         <Button
             android:id="@+id/btnSignUp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tilConfirmPin"
             android:layout_marginTop="@dimen/dimen_20dp"
-            android:width="@dimen/dimen_100dp"
+            android:minHeight="@dimen/dimen_50dp"
+            android:gravity="center"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorPrimary"
             android:text="@string/signUp">
 
         </Button>

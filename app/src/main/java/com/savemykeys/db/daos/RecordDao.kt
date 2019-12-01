@@ -1,9 +1,6 @@
 package com.savemykeys.db.daos
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.savemykeys.db.entity.Record
 import com.savemykeys.utils.Constants
 
@@ -12,6 +9,8 @@ import com.savemykeys.utils.Constants
 interface RecordDao {
     @Insert
     fun insertRecord(record: Record)
+    @Update
+    fun updateRecord(record: Record)
 
     @Query("SELECT * from record_table")
     fun getRecords(): List<Record>

@@ -15,7 +15,10 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabMode"
-        android:layout_width="409dp"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        app:tabSelectedTextColor="@color/colorWhite"
+        app:tabTextColor="#A6FFFFFF"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar">
 
