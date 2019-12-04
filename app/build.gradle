@@ -30,6 +30,7 @@ dependencies {
 
     def room_version = "2.2.1"
     def ktx_version = "1.1.0"
+    def lifecycle_version = "2.1.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -44,4 +45,6 @@ dependencies {
     // Room components
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
 }
