@@ -69,7 +69,7 @@ class HomeActivity : AppCompatActivity(), RecordDeleteListener {
         loadData()
     }
 
-    fun loadData() {
+    private fun loadData() {
         Log.d(TAG, "loadData()")
         recordViewModel.getAllRecords().observe(this,
             Observer<List<Record>> { t ->
