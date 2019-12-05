@@ -58,8 +58,11 @@ class RecordViewModel(application: Application) : AndroidViewModel(application) 
             return
         } else {
             var record = Record(null, url, userName, password, note)
-            if (insert) repository.insertRecord(record!!) else repository.updateRecord(record!!)
-            addRecordViewListener.addRecordSuccess(R.string.recordAddedSucessfully)
+            if (insert) {
+                repository.insertRecord(record!!)
+                addRecordViewListener.addRecordSuccess(R.string.recordAddedSuccessfully)
+            } else repository.updateRecord(record!!)
+            addRecordViewListener.addRecordSuccess(R.string.recordUpdatedSuccessfully)
         }
 
     }

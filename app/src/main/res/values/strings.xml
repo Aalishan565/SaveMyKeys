@@ -19,7 +19,8 @@
     <string name="urlMustNotBeEmpty">Url must not be empty.</string>
     <string name="userNameMustNotBeEmpty">User name must not be empty.</string>
     <string name="passwordMustNotBeEmpty">Password must not be empty.</string>
-    <string name="recordAddedSucessfully">Record added successfully</string>
+    <string name="recordUpdatedSuccessfully">Record updated successfully</string>
+    <string name="recordAddedSuccessfully">Record added successfully</string>
     <string name="record">Record</string>
     <string name="addRecord">Add Record</string>
     <string name="recordDeletedSuccessfully">Record deleted successfully.</string>
