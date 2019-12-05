@@ -82,7 +82,7 @@ class HomeActivity : AppCompatActivity(), RecordDeleteListener {
     override fun deleteRecord(record: Record) {
         Log.d(TAG, "deleteRecord() $record")
         recordViewModel.delete(record)
-        AppUtils.showSnackBarMessageById(this, cordinator, R.string.recordDeletedSuccessfully)
+        AppUtils.showSnackBarMessageById(this, coordinator, R.string.recordDeletedSuccessfully)
     }
 
 }
