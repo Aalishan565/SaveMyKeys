@@ -18,10 +18,10 @@ import kotlinx.android.synthetic.main.row_items_record.view.*
 import com.savemykeys.views.activities.HomeActivity
 
 
-class RecordAdapter(val context: Context, val recordList: List<Record>) :
+class RecordAdapter(val context: Context) :
     RecyclerView.Adapter<RecordAdapter.ViewHolder>(), HomeViewListener {
-
-    private lateinit var view: View;
+    private var recordList: List<Record> = ArrayList()
+    private lateinit var view: View
 
     private var homePresenter: HomePresenter = HomePresenterImpl(context, this)
 
@@ -33,14 +33,19 @@ class RecordAdapter(val context: Context, val recordList: List<Record>) :
     override fun getItemCount(): Int {
         return recordList.size
     }
+    fun setDataToList( recordList: List<Record>){
+        this.recordList=recordList
+        notifyDataSetChanged()
+
+    }
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvUrl.text = recordList[position].url
-        holder.tvUserName.text = recordList[position].userName
+        holder.tvUrl.text = recordList!![position].url
+        holder.tvUserName.text = recordList!![position].userName
         holder.cardRowItem.setOnClickListener {
             var intent = Intent(context, AddRecordActivity::class.java)
-            intent.putExtra(Constants.SINGLE_RECORD, recordList[position])
+            intent.putExtra(Constants.SINGLE_RECORD, recordList!![position])
             intent.putExtra(
                 Constants.SINGLE_RECORD_SCREEN_TITLE,
                 context.getString(R.string.record)
@@ -49,7 +54,7 @@ class RecordAdapter(val context: Context, val recordList: List<Record>) :
 
         }
         holder.ivDelete.setOnClickListener {
-            homePresenter.deleteRecord(recordList[position])
+            homePresenter.deleteRecord(recordList!![position])
         }
     }
 
