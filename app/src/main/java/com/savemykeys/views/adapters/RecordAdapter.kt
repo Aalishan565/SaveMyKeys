@@ -2,45 +2,47 @@ package com.savemykeys.views.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.savemykeys.R
 import com.savemykeys.db.entity.Record
-import com.savemykeys.views.activities.AddRecordActivity
-import com.savemykeys.views.impls.HomePresenterImpl
-import com.savemykeys.views.listeners.HomeViewListener
-import com.savemykeys.views.presenters.HomePresenter
-import com.savemykeys.utils.AppUtils
 import com.savemykeys.utils.Constants
-import kotlinx.android.synthetic.main.row_items_record.view.*
-import com.savemykeys.views.activities.HomeActivity
+import com.savemykeys.views.activities.AddRecordActivity
+import com.savemykeys.views.listeners.HomeViewListener
 import com.savemykeys.views.listeners.RecordDeleteListener
+import kotlinx.android.synthetic.main.row_items_record.view.*
 
 
 class RecordAdapter(val context: Context, val deleteListener: RecordDeleteListener) :
-    RecyclerView.Adapter<RecordAdapter.ViewHolder>(), HomeViewListener {
+    RecyclerView.Adapter<RecordAdapter.ViewHolder>(){
 
+    private val TAG = "RecordAdapter"
     private var recordList: List<Record> = ArrayList()
     private lateinit var view: View
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        Log.d(TAG, "onCreateViewHolder")
         view = LayoutInflater.from(context).inflate(R.layout.row_items_record, parent, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
+        Log.d(TAG, "getItemCount")
         return recordList.size
     }
 
     fun setDataToList(recordList: List<Record>) {
+        Log.d(TAG, "setDataToList")
         this.recordList = recordList
         notifyDataSetChanged()
 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        Log.d(TAG, "onBindViewHolder")
         holder.tvUrl.text = recordList!![position].url
         holder.tvUserName.text = recordList!![position].userName
         holder.cardRowItem.setOnClickListener {
@@ -63,12 +65,6 @@ class RecordAdapter(val context: Context, val deleteListener: RecordDeleteListen
         val tvUrl = view.tvUrl
         val tvUserName = view.tvUserName
         val ivDelete = view.ivDelete
-    }
-
-    override fun successfullyDeleted(message: Int) {
-      /*  AppUtils.showSnackBarMessageById(context, view, message)
-        (context as HomeActivity).loadData()*/
-
     }
 
 }

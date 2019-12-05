@@ -10,6 +10,7 @@ import com.savemykeys.db.daos.RecordDao
 import com.savemykeys.db.entity.Record
 
 class RecordRepository(context: Context) {
+
     private val TAG ="RecordRepository"
     private var databaseInstance: AppDatabase? = null
     private var recordDao: RecordDao? = null
@@ -23,6 +24,11 @@ class RecordRepository(context: Context) {
     fun deleteRecord(record: Record) {
         Log.d(TAG,"deleteRecord")
         recordDao!!.deleteRecord(record)
+    }
+
+    fun deleteAllRecord() {
+        Log.d(TAG,"deleteRecord")
+        recordDao!!.deleteAllRecord()
     }
 
     fun insertRecord(record: Record) {

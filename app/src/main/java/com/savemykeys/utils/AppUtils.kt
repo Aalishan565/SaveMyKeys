@@ -26,16 +26,17 @@ class AppUtils {
 
         }
 
-        fun showSnackBarMessage(view: View,
+        fun showSnackBarMessage(
+            view: View,
             message: String,
             duration: Int = Snackbar.LENGTH_SHORT
         ) {
-            Snackbar.make(view,message, duration).show()
+            Snackbar.make(view, message, duration).show()
 
         }
 
         fun showSnackBarMessageById(
-            context: Context,view: View,
+            context: Context, view: View,
             id: Int,
             duration: Int = Snackbar.LENGTH_SHORT
         ) {

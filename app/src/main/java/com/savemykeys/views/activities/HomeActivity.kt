@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -21,10 +20,10 @@ import com.savemykeys.views.listeners.RecordDeleteListener
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity(), RecordDeleteListener {
+
+    private val TAG = "HomeActivity"
     private lateinit var recordViewModel: RecordViewModel
     private var recordAdapter: RecordAdapter? = null
-    private val TAG = "HomeActivity"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +81,7 @@ class HomeActivity : AppCompatActivity(), RecordDeleteListener {
     }
 
     override fun deleteRecord(record: Record) {
+        Log.d(TAG, "deleteRecord")
         recordViewModel.delete(record)
         AppUtils.showSnackBarMessageById(this, cordinator, R.string.recordDeletedSuccessfully)
     }
