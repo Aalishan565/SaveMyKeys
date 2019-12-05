@@ -11,13 +11,13 @@ class SaveMyKeysApplication : Application() {
     private var databaseInstance: AppDatabase? = null
 
     override fun onCreate() {
-        Log.d(TAG,"onCreate")
+        Log.d(TAG,"onCreate()")
         super.onCreate()
     }
 
     fun getDatabaseInstance(): AppDatabase {
         if (null == databaseInstance) {
-            Log.d(TAG,"getDatabaseInstance")
+            Log.d(TAG,"getDatabaseInstance()")
             databaseInstance = Room.databaseBuilder(
                 applicationContext,
                 AppDatabase::class.java, Constants.APP_DB_NAME

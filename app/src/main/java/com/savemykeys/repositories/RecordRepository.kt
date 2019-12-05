@@ -11,7 +11,7 @@ import com.savemykeys.db.entity.Record
 
 class RecordRepository(context: Context) {
 
-    private val TAG ="RecordRepository"
+    private val TAG = "RecordRepository"
     private var databaseInstance: AppDatabase? = null
     private var recordDao: RecordDao? = null
 
@@ -22,28 +22,27 @@ class RecordRepository(context: Context) {
     }
 
     fun deleteRecord(record: Record) {
-        Log.d(TAG,"deleteRecord")
+        Log.d(TAG, "deleteRecord() $record")
         recordDao!!.deleteRecord(record)
     }
 
     fun deleteAllRecord() {
-        Log.d(TAG,"deleteRecord")
+        Log.d(TAG, "deleteAllRecord()")
         recordDao!!.deleteAllRecord()
     }
 
     fun insertRecord(record: Record) {
-        Log.d(TAG,"insertRecord")
+        Log.d(TAG, "insertRecord() $record")
         recordDao!!.insertRecord(record)
     }
 
     fun updateRecord(record: Record) {
-        Log.d(TAG,"updateRecord")
+        Log.d(TAG, "updateRecord $record")
         recordDao!!.updateRecord(record)
     }
 
     fun getAllRecords(): LiveData<List<Record>> {
-        Log.d(TAG,"getAllRecords")
+        Log.d(TAG, "getAllRecords() ${recordDao!!.getRecords()}")
         return recordDao!!.getRecords()
     }
-
 }

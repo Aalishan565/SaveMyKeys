@@ -18,14 +18,14 @@ class LoginSignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "LoginSignUpActivity")
+        Log.d(TAG, "onCreate()")
         setContentView(R.layout.activity_login_sign_up)
         setupViewPager(viewPagerLoginSignUp)
         tabMode.setupWithViewPager(viewPagerLoginSignUp)
     }
 
     private fun setupViewPager(viewPager: ViewPager) {
-        Log.d(TAG, "setupViewPager")
+        Log.d(TAG, "setupViewPager()")
         viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
         viewPagerAdapter.addFragment(LoginFragment(), getString(R.string.login_lbl))
         viewPagerAdapter.addFragment(SignUpFragment(), getString(R.string.signup_lbl))

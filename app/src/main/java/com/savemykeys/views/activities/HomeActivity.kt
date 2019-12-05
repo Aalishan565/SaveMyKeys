@@ -29,7 +29,7 @@ class HomeActivity : AppCompatActivity(), RecordDeleteListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
-        Log.d(TAG, "onCreate")
+        Log.d(TAG, "onCreate()")
         rvHome.layoutManager = LinearLayoutManager(this)
         recordAdapter = RecordAdapter(this, this)
         rvHome.adapter = recordAdapter
@@ -44,14 +44,14 @@ class HomeActivity : AppCompatActivity(), RecordDeleteListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        Log.d(TAG, "onCreateOptionsMenu")
+        Log.d(TAG, "onCreateOptionsMenu()")
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.main_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Log.d(TAG, "onOptionsItemSelected")
+        Log.d(TAG, "onOptionsItemSelected()")
         return super.onOptionsItemSelected(item)
         /*   when (item.itemId) {
                R.id.menu_search -> {
@@ -65,23 +65,22 @@ class HomeActivity : AppCompatActivity(), RecordDeleteListener {
 
     override fun onResume() {
         super.onResume()
-        Log.d(TAG, "onResume")
+        Log.d(TAG, "onResume()")
         loadData()
     }
 
     fun loadData() {
-        Log.d(TAG, "loadData")
+        Log.d(TAG, "loadData()")
         recordViewModel.getAllRecords().observe(this,
             Observer<List<Record>> { t ->
                 recordAdapter!!.setDataToList(t!!)
-                //rvHome.adapter=recordAdapter
                 Log.d(TAG, "" + t.size)
             })
 
     }
 
     override fun deleteRecord(record: Record) {
-        Log.d(TAG, "deleteRecord")
+        Log.d(TAG, "deleteRecord() $record")
         recordViewModel.delete(record)
         AppUtils.showSnackBarMessageById(this, cordinator, R.string.recordDeletedSuccessfully)
     }

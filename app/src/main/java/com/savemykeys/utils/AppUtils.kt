@@ -14,7 +14,6 @@ class AppUtils {
             duration: Int = Toast.LENGTH_SHORT
         ) {
             Toast.makeText(context, message, duration).show()
-
         }
 
         fun showToastMessageById(
@@ -23,7 +22,6 @@ class AppUtils {
             duration: Int = Toast.LENGTH_SHORT
         ) {
             Toast.makeText(context, context.getString(id), duration).show()
-
         }
 
         fun showSnackBarMessage(
@@ -32,7 +30,6 @@ class AppUtils {
             duration: Int = Snackbar.LENGTH_SHORT
         ) {
             Snackbar.make(view, message, duration).show()
-
         }
 
         fun showSnackBarMessageById(
@@ -41,7 +38,6 @@ class AppUtils {
             duration: Int = Snackbar.LENGTH_SHORT
         ) {
             Snackbar.make(view, context.getString(id), duration).show()
-
         }
     }
 

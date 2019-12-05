@@ -34,7 +34,7 @@ class LoginFragment : Fragment(), LoginViewListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.d(TAG, "onActivityCreated")
+        Log.d(TAG, "onActivityCreated()")
         loginSignUpViewModel = ViewModelProviders.of(this).get(LoginSignUpViewModel::class.java)
         loginSignUpViewModel.setLoginViewListener(this)
         btnLogin.setOnClickListener {
@@ -43,7 +43,7 @@ class LoginFragment : Fragment(), LoginViewListener {
     }
 
     override fun loginSuccess(loginSuccessMessage: Int) {
-        Log.d(TAG, "loginSuccess")
+        Log.d(TAG, "loginSuccess()")
         context?.let { AppUtils.showToastMessageById(it, loginSuccessMessage) }
         var intent = Intent(activity, HomeActivity::class.java)
         startActivity(intent)
@@ -51,12 +51,12 @@ class LoginFragment : Fragment(), LoginViewListener {
     }
 
     override fun loginFail(loginFailMessage: Int) {
-        Log.d(TAG, "loginFail")
+        Log.d(TAG, "loginFail() loginFailMessage: $loginFailMessage")
         context?.let { AppUtils.showToastMessageById(it, loginFailMessage) }
     }
 
     override fun showEmptyPinError(emptyPinMessage: Int) {
-        Log.d(TAG, "showEmptyPinError")
+        Log.d(TAG, "showEmptyPinError() emptyPinMessage $emptyPinMessage ")
         context?.let { AppUtils.showToastMessageById(it, emptyPinMessage) }
     }
 

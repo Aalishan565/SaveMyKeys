@@ -19,38 +19,38 @@ class AppSharedPreference {
     }
 
     fun saveStringPref(context: Context, key: String, value: String) {
-        Log.d(TAG, "saveStringPref")
+        Log.d(TAG, "saveStringPref() key: $key value: $value")
         val sharedPreferences =
             context.getSharedPreferences(Constants.APP_PREFERENCE_NAME, Context.MODE_PRIVATE)
         sharedPreferences.edit(true) { putString(key, value) }
     }
 
     fun getStringPref(context: Context, key: String): String? {
-        Log.d(TAG, "getStringPref")
+        Log.d(TAG, "getStringPref() key: $key")
         val sharedPreferences =
             context.getSharedPreferences(Constants.APP_PREFERENCE_NAME, Context.MODE_PRIVATE)
         return sharedPreferences.getString(key, null)
     }
 
     fun saveBooleanPref(context: Context, key: String, value: Boolean) {
-        Log.d(TAG, "saveBooleanPref")
+        Log.d(TAG, "saveBooleanPref() key: $key value: $value")
         val sharedPreferences =
             context.getSharedPreferences(Constants.APP_PREFERENCE_NAME, Context.MODE_PRIVATE)
         sharedPreferences.edit(true) { putBoolean(key, value) }
     }
 
     fun clearAllPrefs(context: Context) {
-        Log.d(TAG, "clearAllPrefs")
+        Log.d(TAG, "clearAllPrefs()")
         val sharedPreferences =
             context.getSharedPreferences(Constants.APP_PREFERENCE_NAME, Context.MODE_PRIVATE)
         sharedPreferences.edit(true) { clear() }
     }
 
     fun getBooleanPref(context: Context, key: String): Boolean {
-        Log.d(TAG, "getBooleanPref")
-        val sharedpreferences =
+        Log.d(TAG, "getBooleanPref() key: $key")
+        val sharedPreferences =
             context.getSharedPreferences(Constants.APP_PREFERENCE_NAME, Context.MODE_PRIVATE)
-        return sharedpreferences.getBoolean(key, false)
+        return sharedPreferences.getBoolean(key, false)
     }
 
 }

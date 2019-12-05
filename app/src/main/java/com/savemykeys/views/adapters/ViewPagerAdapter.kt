@@ -13,24 +13,23 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
     private var mFragmentTitleList = ArrayList<String>()
 
     override fun getItem(position: Int): Fragment {
-        Log.d(TAG, "getItem")
+        Log.d(TAG, "getItem() position: $position")
         return mFragmentList.get(position)
     }
 
     override fun getCount(): Int {
-        Log.d(TAG, "getCount")
+        Log.d(TAG, "getCount() ${mFragmentList.size}")
         return mFragmentList.size
     }
 
     fun addFragment(fragment: Fragment, title: String) {
-        Log.d(TAG, "addFragment")
+        Log.d(TAG, "addFragment() fragment: $fragment title: $title")
         mFragmentList.add(fragment)
         mFragmentTitleList.add(title)
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        Log.d(TAG, "getPageTitle")
+        Log.d(TAG, "getPageTitle() position: $position")
         return mFragmentTitleList.get(position)
     }
-
 }

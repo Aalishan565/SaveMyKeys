@@ -23,7 +23,7 @@ class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
     private var record: Record? = null
 
     override fun onSupportNavigateUp(): Boolean {
-        Log.d(TAG, "onSupportNavigateUp")
+        Log.d(TAG, "onSupportNavigateUp()")
         onBackPressed()
         return true
     }
@@ -31,7 +31,7 @@ class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_record)
-        Log.d(TAG, "onCreate")
+        Log.d(TAG, "onCreate()")
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel::class.java)
         recordViewModel.setViewListener(this)
         val bundle = intent.extras
@@ -50,7 +50,7 @@ class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
         }
 
         btnSave.setOnClickListener {
-            Log.d(TAG, "btnSave")
+            Log.d(TAG, "btnSave()")
             if (screenTitle.equals(getString(R.string.addRecord), ignoreCase = true)) {
                 recordViewModel.addOrUpdateRecord(
                     etSiteUrl.text.toString(),
@@ -84,13 +84,13 @@ class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
     }
 
     override fun addRecordSuccess(message: Int) {
-        Log.d(TAG, "addRecordSuccess")
+        Log.d(TAG, "addRecordSuccess() $message")
         AppUtils.showToastMessageById(this, message)
         finish()
     }
 
     override fun showEmptyFieldMessage(message: Int) {
-        Log.d(TAG, "showEmptyFieldMessage")
+        Log.d(TAG, "showEmptyFieldMessage() $message")
         AppUtils.showToastMessageById(this, message)
     }
 }

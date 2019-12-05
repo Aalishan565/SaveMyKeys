@@ -8,12 +8,12 @@ class UserRepository(val context: Context) {
     private val TAG = "UserRepository"
     var appSharedPreference: AppSharedPreference = AppSharedPreference.instance
     fun doLogin(pin: String): Boolean {
-        Log.d(TAG, "doLogin")
+        Log.d(TAG, "doLogin() $pin")
         return appSharedPreference.getBooleanPref(context, pin)
     }
 
     fun doSignUp(pin: String) {
-        Log.d(TAG, "doSignUp")
+        Log.d(TAG, "doSignUp $pin")
         appSharedPreference.saveBooleanPref(context, pin, true)
         appSharedPreference.clearAllPrefs(context)
         appSharedPreference.saveBooleanPref(context, pin, true)

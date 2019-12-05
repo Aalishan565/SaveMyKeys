@@ -36,7 +36,7 @@ class SignUpFragment : Fragment(), View.OnClickListener, SignUpViewListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.d(TAG, "onActivityCreated")
+        Log.d(TAG, "onActivityCreated()")
         loginSignUpViewModel = ViewModelProviders.of(this).get(LoginSignUpViewModel::class.java)
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel::class.java)
         loginSignUpViewModel.setSignUpViewListener(this)
@@ -46,19 +46,19 @@ class SignUpFragment : Fragment(), View.OnClickListener, SignUpViewListener {
     override fun onClick(view: View?) {
         when (view) {
             btnSignUp -> {
-                Log.d(TAG, "onClick btnSignUp")
+                Log.d(TAG, "onClick btnSignUp()")
                 loginSignUpViewModel.doSignUp(etPin.text.toString(), etConfirmPin.text.toString())
             }
         }
     }
 
     override fun showPinDoesNotMatchError(pinDoesNotMatch: Int) {
-        Log.d(TAG, "showPinDoesNotMatchError")
+        Log.d(TAG, "showPinDoesNotMatchError() pinDoesNotMatch")
         activity?.let { AppUtils.showToastMessageById(it, pinDoesNotMatch) }
     }
 
     override fun signUpSuccess(signUpSuccessMessage: Int) {
-        Log.d(TAG, "signUpSuccess")
+        Log.d(TAG, "signUpSuccess() signUpSuccessMessage")
         activity?.let { AppUtils.showToastMessageById(it, signUpSuccessMessage) }
         recordViewModel.deleteAllRecord();
         var intent = Intent(activity, HomeActivity::class.java)
@@ -67,7 +67,7 @@ class SignUpFragment : Fragment(), View.OnClickListener, SignUpViewListener {
     }
 
     override fun showEmptyPinError(emptyPinMessage: Int) {
-        Log.d(TAG, "showEmptyPinError")
+        Log.d(TAG, "showEmptyPinError() emptyPinMessage")
         activity?.let { AppUtils.showToastMessageById(it, emptyPinMessage) }
     }
 }
