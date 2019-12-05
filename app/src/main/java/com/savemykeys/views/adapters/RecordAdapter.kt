@@ -16,14 +16,14 @@ import com.savemykeys.utils.AppUtils
 import com.savemykeys.utils.Constants
 import kotlinx.android.synthetic.main.row_items_record.view.*
 import com.savemykeys.views.activities.HomeActivity
+import com.savemykeys.views.listeners.RecordDeleteListener
 
 
-class RecordAdapter(val context: Context) :
+class RecordAdapter(val context: Context, val deleteListener: RecordDeleteListener) :
     RecyclerView.Adapter<RecordAdapter.ViewHolder>(), HomeViewListener {
+
     private var recordList: List<Record> = ArrayList()
     private lateinit var view: View
-
-    private var homePresenter: HomePresenter = HomePresenterImpl(context, this)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         view = LayoutInflater.from(context).inflate(R.layout.row_items_record, parent, false)
@@ -33,12 +33,12 @@ class RecordAdapter(val context: Context) :
     override fun getItemCount(): Int {
         return recordList.size
     }
-    fun setDataToList( recordList: List<Record>){
-        this.recordList=recordList
+
+    fun setDataToList(recordList: List<Record>) {
+        this.recordList = recordList
         notifyDataSetChanged()
 
     }
-
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvUrl.text = recordList!![position].url
@@ -54,7 +54,7 @@ class RecordAdapter(val context: Context) :
 
         }
         holder.ivDelete.setOnClickListener {
-            homePresenter.deleteRecord(recordList!![position])
+            deleteListener.deleteRecord(recordList!![position])
         }
     }
 
@@ -66,10 +66,9 @@ class RecordAdapter(val context: Context) :
     }
 
     override fun successfullyDeleted(message: Int) {
-        AppUtils.showSnackBarMessageById(context, view, message)
-        (context as HomeActivity).loadData()
+      /*  AppUtils.showSnackBarMessageById(context, view, message)
+        (context as HomeActivity).loadData()*/
 
     }
-
 
 }
