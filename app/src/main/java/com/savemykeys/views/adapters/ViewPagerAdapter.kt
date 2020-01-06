@@ -14,7 +14,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
 
     override fun getItem(position: Int): Fragment {
         Log.d(TAG, "getItem() position: $position")
-        return mFragmentList.get(position)
+        return mFragmentList[position]
     }
 
     override fun getCount(): Int {
@@ -30,6 +30,6 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
 
     override fun getPageTitle(position: Int): CharSequence? {
         Log.d(TAG, "getPageTitle() position: $position")
-        return mFragmentTitleList.get(position)
+        return mFragmentTitleList[position]
     }
 }

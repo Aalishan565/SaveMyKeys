@@ -35,7 +35,7 @@ class HomeActivity : AppCompatActivity(), RecordDeleteListener {
         rvHome.adapter = recordAdapter
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel::class.java)
         fabAdd.setOnClickListener {
-            var intent = Intent(this, AddRecordActivity::class.java)
+            val intent = Intent(this, AddRecordActivity::class.java)
             intent.putExtra(
                 Constants.SINGLE_RECORD_SCREEN_TITLE, getString(R.string.addRecord)
             )

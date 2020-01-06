@@ -45,7 +45,7 @@ class LoginFragment : Fragment(), LoginViewListener {
     override fun loginSuccess(loginSuccessMessage: Int) {
         Log.d(TAG, "loginSuccess()")
         context?.let { AppUtils.showToastMessageById(it, loginSuccessMessage) }
-        var intent = Intent(activity, HomeActivity::class.java)
+        val intent = Intent(activity, HomeActivity::class.java)
         startActivity(intent)
         activity?.finish()
     }

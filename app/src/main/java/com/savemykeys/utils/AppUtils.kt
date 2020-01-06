@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 
 class AppUtils {
+
     companion object {
 
         fun showToastMessage(

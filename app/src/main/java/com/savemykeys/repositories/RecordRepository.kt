@@ -3,7 +3,6 @@ package com.savemykeys.repositories
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.savemykeys.R
 import com.savemykeys.application.SaveMyKeysApplication
 import com.savemykeys.db.AppDatabase
 import com.savemykeys.db.daos.RecordDao
@@ -17,7 +16,7 @@ class RecordRepository(context: Context) {
 
     init {
         databaseInstance =
-            (context.applicationContext as SaveMyKeysApplication).getDatabaseInstance();
+            (context.applicationContext as SaveMyKeysApplication).getDatabaseInstance()
         recordDao = databaseInstance?.recordDao()
     }
 

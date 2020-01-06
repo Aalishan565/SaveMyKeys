@@ -52,7 +52,7 @@ class LoginSignUpViewModel(application: Application) : AndroidViewModel(applicat
         } else if (confirmPin.isBlank()) {
             Log.d(TAG, "doSignUp() confirmPin is Blank")
             signUpViewListener.showEmptyPinError(R.string.emptyPinMessage)
-        } else if (!pin.equals(confirmPin)) {
+        } else if (pin != confirmPin) {
             Log.d(TAG, "confirm pin $confirmPin and pin $pin does not match")
             signUpViewListener.showPinDoesNotMatchError(R.string.pinDoesNotMatch)
         } else {

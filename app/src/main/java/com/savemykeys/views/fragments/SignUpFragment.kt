@@ -60,8 +60,8 @@ class SignUpFragment : Fragment(), View.OnClickListener, SignUpViewListener {
     override fun signUpSuccess(signUpSuccessMessage: Int) {
         Log.d(TAG, "signUpSuccess() signUpSuccessMessage")
         activity?.let { AppUtils.showToastMessageById(it, signUpSuccessMessage) }
-        recordViewModel.deleteAllRecord();
-        var intent = Intent(activity, HomeActivity::class.java)
+        recordViewModel.deleteAllRecord()
+        val intent = Intent(activity, HomeActivity::class.java)
         startActivity(intent)
         activity?.finish()
     }

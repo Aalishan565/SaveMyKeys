@@ -6,11 +6,11 @@ import android.os.Handler
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.savemykeys.R
+import com.savemykeys.utils.Constants
 
 class SplashActivity : AppCompatActivity() {
 
     private val TAG = "SplashActivity"
-    private val SPLASH_TIME_OUT: Long = 2000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +19,6 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             startActivity(Intent(this, LoginSignUpActivity::class.java))
             finish()
-        }, SPLASH_TIME_OUT)
+        }, Constants.SPLASH_TIME_OUT)
     }
 }

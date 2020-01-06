@@ -15,7 +15,10 @@ import com.savemykeys.views.listeners.RecordDeleteListener
 import kotlinx.android.synthetic.main.row_items_record.view.*
 
 
-class RecordAdapter(val context: Context, val deleteListener: RecordDeleteListener) :
+class RecordAdapter(
+    private val context: Context,
+    private val deleteListener: RecordDeleteListener
+) :
     RecyclerView.Adapter<RecordAdapter.ViewHolder>() {
 
     private val TAG = "RecordAdapter"
@@ -34,18 +37,18 @@ class RecordAdapter(val context: Context, val deleteListener: RecordDeleteListen
     }
 
     fun setDataToList(recordList: List<Record>) {
-        Log.d(TAG, "setDataToList() ${recordList}")
+        Log.d(TAG, "setDataToList() $recordList")
         this.recordList = recordList
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.d(TAG, "onBindViewHolder() position: $position")
-        holder.tvUrl.text = recordList!![position].url
-        holder.tvUserName.text = recordList!![position].userName
+        holder.tvUrl.text = recordList[position].url
+        holder.tvUserName.text = recordList[position].userName
         holder.cardRowItem.setOnClickListener {
-            var intent = Intent(context, AddRecordActivity::class.java)
-            intent.putExtra(Constants.SINGLE_RECORD, recordList!![position])
+            val intent = Intent(context, AddRecordActivity::class.java)
+            intent.putExtra(Constants.SINGLE_RECORD, recordList[position])
             intent.putExtra(
                 Constants.SINGLE_RECORD_SCREEN_TITLE,
                 context.getString(R.string.record)
@@ -53,7 +56,7 @@ class RecordAdapter(val context: Context, val deleteListener: RecordDeleteListen
             context.startActivity(intent)
         }
         holder.ivDelete.setOnClickListener {
-            deleteListener.deleteRecord(recordList!![position])
+            deleteListener.deleteRecord(recordList[position])
         }
     }
 

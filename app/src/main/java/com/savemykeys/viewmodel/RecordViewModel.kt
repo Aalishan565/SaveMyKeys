@@ -32,7 +32,7 @@ class RecordViewModel(application: Application) : AndroidViewModel(application) 
 
     fun setViewListener(addRecordViewListener: AddRecordViewListener) {
         Log.d(TAG, "setViewListener()")
-        this.addRecordViewListener = addRecordViewListener;
+        this.addRecordViewListener = addRecordViewListener
 
     }
 
@@ -41,28 +41,37 @@ class RecordViewModel(application: Application) : AndroidViewModel(application) 
         userName: String,
         password: String,
         note: String,
-        insert: Boolean
+        insert: Boolean,
+        recordId: Long = 0
     ) {
         Log.d(TAG, "addOrUpdateRecord()")
-        if (url.isBlank()) {
-            Log.d(TAG, "addOrUpdateRecord() url is blank")
-            addRecordViewListener.showEmptyFieldMessage(R.string.urlMustNotBeEmpty)
-            return
-        } else if (userName.isBlank()) {
-            Log.d(TAG, "addOrUpdateRecord() userName is blank")
-            addRecordViewListener.showEmptyFieldMessage(R.string.userNameMustNotBeEmpty)
-            return
-        } else if (password.isBlank()) {
-            Log.d(TAG, "addOrUpdateRecord() password is blank")
-            addRecordViewListener.showEmptyFieldMessage(R.string.passwordMustNotBeEmpty)
-            return
-        } else {
-            var record = Record(null, url, userName, password, note)
-            if (insert) {
-                repository.insertRecord(record!!)
-                addRecordViewListener.addRecordSuccess(R.string.recordAddedSuccessfully)
-            } else repository.updateRecord(record!!)
-            addRecordViewListener.addRecordSuccess(R.string.recordUpdatedSuccessfully)
+        when {
+            url.isBlank() -> {
+                Log.d(TAG, "addOrUpdateRecord() url is blank")
+                addRecordViewListener.showEmptyFieldMessage(R.string.urlMustNotBeEmpty)
+                return
+            }
+            userName.isBlank() -> {
+                Log.d(TAG, "addOrUpdateRecord() userName is blank")
+                addRecordViewListener.showEmptyFieldMessage(R.string.userNameMustNotBeEmpty)
+                return
+            }
+            password.isBlank() -> {
+                Log.d(TAG, "addOrUpdateRecord() password is blank")
+                addRecordViewListener.showEmptyFieldMessage(R.string.passwordMustNotBeEmpty)
+                return
+            }
+            else -> {
+                var record: Record
+                if (insert) {
+                    record = Record(url, userName, password, note)
+                    repository.insertRecord(record)
+                    addRecordViewListener.addRecordSuccess(R.string.recordAddedSuccessfully)
+                } else
+                    record = Record(url, userName, password, note, recordId)
+                repository.updateRecord(record)
+                addRecordViewListener.addRecordSuccess(R.string.recordUpdatedSuccessfully)
+            }
         }
 
     }

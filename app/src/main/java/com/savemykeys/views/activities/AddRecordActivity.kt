@@ -43,6 +43,7 @@ class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp)
         record = bundle?.getParcelable(Constants.SINGLE_RECORD)
         if (null != record) {
+            Log.d(TAG, "record not null: $record")
             etSiteUrl.setText(record?.url)
             etUserName.setText(record?.userName)
             etPassword.setText(record?.password)
@@ -64,7 +65,8 @@ class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
                     etSiteUrl.text.toString(),
                     etUserName.text.toString(),
                     etPassword.text.toString(),
-                    etNote.text.toString(), false
+                    etNote.text.toString(), false,
+                    record!!.recordId
                 )
             }
 
