@@ -41,6 +41,7 @@ class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp)
+        ivPwdVisibility.isChecked=true
         record = bundle?.getParcelable(Constants.SINGLE_RECORD)
         if (null != record) {
             Log.d(TAG, "record not null: $record")
