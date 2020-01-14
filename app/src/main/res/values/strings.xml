@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SaveMyKeys</string>
+    <string name="app_name">Save My Keys</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="enter_login_pin">Enter login pin</string>
@@ -31,4 +31,5 @@
     <string name="save_my_keys_local_app">Save my keys local app</string>
     <string name="search">Search</string>
     <string name="delete">Delete</string>
+    <string name="this_app_is_designed_for_offline_data_storage_we_ensure_your_data_is_fully_secure_to_your_apps_local_database_available_in_phone">This app is designed for offline data storage. We ensure your data is fully secure to your apps local database available in phone</string>
 </resources>
