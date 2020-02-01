@@ -5,17 +5,17 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.savemykeys.R
 import com.savemykeys.db.entity.Record
 import com.savemykeys.utils.AppUtils
 import com.savemykeys.utils.Constants
 import com.savemykeys.viewmodel.RecordViewModel
-import com.savemykeys.views.listeners.AddRecordViewListener
 import kotlinx.android.synthetic.main.activity_add_record.*
 
 
-class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
+class AddRecordActivity : AppCompatActivity() {
 
     private val TAG = "AddRecordActivity"
     private lateinit var recordViewModel: RecordViewModel
@@ -33,7 +33,6 @@ class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
         setContentView(R.layout.activity_add_record)
         Log.d(TAG, "onCreate()")
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel::class.java)
-        recordViewModel.setViewListener(this)
         val bundle = intent.extras
         screenTitle = bundle?.getString(Constants.SINGLE_RECORD_SCREEN_TITLE)
         toolbar.title = screenTitle
@@ -41,7 +40,7 @@ class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp)
-        ivPwdVisibility.isChecked=true
+        ivPwdVisibility.isChecked = true
         record = bundle?.getParcelable(Constants.SINGLE_RECORD)
         if (null != record) {
             Log.d(TAG, "record not null: $record")
@@ -84,16 +83,17 @@ class AddRecordActivity : AppCompatActivity(), AddRecordViewListener {
                 ivPwdVisibility.setBackgroundResource(R.drawable.ic_visibility_off_black_24dp)
             }
         }
+        recordViewModel.getRecordStatus()
+            .observe(this,
+                Observer<Int> { message ->
+                    this?.let { showRecordStatus(message) }
+                }
+            )
     }
 
-    override fun addRecordSuccess(message: Int) {
-        Log.d(TAG, "addRecordSuccess() $message")
+    private fun showRecordStatus(message: Int) {
+        Log.d(TAG, "showRecordStatus() ${getString(message)}")
         AppUtils.showToastMessageById(this, message)
         finish()
-    }
-
-    override fun showEmptyFieldMessage(message: Int) {
-        Log.d(TAG, "showEmptyFieldMessage() $message")
-        AppUtils.showToastMessageById(this, message)
     }
 }
