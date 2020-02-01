@@ -86,7 +86,7 @@ class AddRecordActivity : AppCompatActivity() {
         recordViewModel.getRecordStatus()
             .observe(this,
                 Observer<Int> { message ->
-                    this?.let { showRecordStatus(message) }
+                    this.let { showRecordStatus(message) }
                 }
             )
     }

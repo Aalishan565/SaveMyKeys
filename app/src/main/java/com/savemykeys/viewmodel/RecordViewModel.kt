@@ -61,7 +61,7 @@ class RecordViewModel(application: Application) : AndroidViewModel(application) 
                 return
             }
             else -> {
-                var record: Record
+                val record: Record
                 if (insert) {
                     record = Record(url, userName, password, note)
                     repository.insertRecord(record)
