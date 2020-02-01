@@ -1,17 +1,15 @@
 <resources>
-    <string name="app_name">SaveMyKeys</string>
+    <string name="app_name">Save My Keys</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_login_pin">Enter login pin</string>
-    <string name="login">Login</string>
     <string name="signUp">SignUp</string>
     <string name="set_login_pin">Set login pin</string>
     <string name="confirm_login_pin">Confirm login pin</string>
     <string name="login_lbl">Login</string>
-    <string name="signup_lbl">SignUp</string>
+    <string name="signup_lbl">Sign Up</string>
     <string name="emptyPinMessage">Pin must not be empty.</string>
-    <string name="pinDoesNotMatch">Pin and confirm pin doesn\'t match</string>
+    <string name="pinDoesNotMatch">Pin and confirm pin does\'t match</string>
     <string name="signUpSuccess">You have successfully signed up.</string>
     <string name="loginSuccess">Login Success.</string>
     <string name="userNotFound">User not found</string>
@@ -19,8 +17,19 @@
     <string name="urlMustNotBeEmpty">Url must not be empty.</string>
     <string name="userNameMustNotBeEmpty">User name must not be empty.</string>
     <string name="passwordMustNotBeEmpty">Password must not be empty.</string>
-    <string name="recordAddedSucessfully">Record added successfully</string>
+    <string name="recordUpdatedSuccessfully">Record updated successfully</string>
+    <string name="recordAddedSuccessfully">Record added successfully</string>
     <string name="record">Record</string>
     <string name="addRecord">Add Record</string>
     <string name="recordDeletedSuccessfully">Record deleted successfully.</string>
+    <string name="enter_url_or_site_remark">Enter url or site remark</string>
+    <string name="enter_user_name">Enter user name</string>
+    <string name="enter_password">Enter password</string>
+    <string name="add_some_note_here">Add some note here</string>
+    <string name="login">Login</string>
+    <string name="signup">SignUp</string>
+    <string name="save_my_keys_local_app">Save my keys local app</string>
+    <string name="search">Search</string>
+    <string name="delete">Delete</string>
+    <string name="this_app_is_designed_for_offline_data_storage_we_ensure_your_data_is_fully_secure_to_your_apps_local_database_available_in_phone">This app is designed for offline data storage. We ensure your data is fully secure to your apps local database available in phone</string>
 </resources>

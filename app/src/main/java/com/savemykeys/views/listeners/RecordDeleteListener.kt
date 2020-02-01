@@ -1,7 +1,8 @@
-package com.savemykeys.views.presenters
+package com.savemykeys.views.listeners
 
 import com.savemykeys.db.entity.Record
 
-interface HomePresenter {
+interface RecordDeleteListener {
+
     fun deleteRecord(record: Record)
 }

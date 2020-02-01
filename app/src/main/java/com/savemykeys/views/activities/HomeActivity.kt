@@ -1,35 +1,41 @@
 package com.savemykeys.views.activities
 
-import android.app.SearchManager
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.savemykeys.R
-import com.savemykeys.application.SaveMyKeysApplication
-import com.savemykeys.db.AppDatabase
-import com.savemykeys.db.daos.RecordDao
 import com.savemykeys.db.entity.Record
+import com.savemykeys.utils.AppUtils
 import com.savemykeys.utils.Constants
+import com.savemykeys.viewmodel.RecordViewModel
 import com.savemykeys.views.adapters.RecordAdapter
+import com.savemykeys.views.listeners.RecordDeleteListener
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), RecordDeleteListener {
 
-    private var databaseInstance: AppDatabase? = null
-    private var recordDao: RecordDao? = null
-    private var recordList: List<Record>? = null
+    private val TAG = "HomeActivity"
+    private lateinit var recordViewModel: RecordViewModel
     private var recordAdapter: RecordAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
-        fabAdd.setOnClickListener { view ->
-            var intent = Intent(this, AddRecordActivity::class.java)
+        Log.d(TAG, "onCreate()")
+        rvHome.layoutManager = LinearLayoutManager(this)
+        recordAdapter = RecordAdapter(this, this)
+        rvHome.adapter = recordAdapter
+        recordViewModel = ViewModelProviders.of(this).get(RecordViewModel::class.java)
+        fabAdd.setOnClickListener {
+            val intent = Intent(this, AddRecordActivity::class.java)
             intent.putExtra(
                 Constants.SINGLE_RECORD_SCREEN_TITLE, getString(R.string.addRecord)
             )
@@ -38,35 +44,45 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        Log.d(TAG, "onCreateOptionsMenu()")
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.main_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d(TAG, "onOptionsItemSelected()")
         return super.onOptionsItemSelected(item)
-        when (item.itemId) {
-            R.id.menu_search -> {
-            }
-            else -> {
+        /*   when (item.itemId) {
+               R.id.menu_search -> {
+               }
+               else -> {
 
-            }
-        }
+               }
+           }*/
 
     }
-
 
     override fun onResume() {
         super.onResume()
+        Log.d(TAG, "onResume()")
         loadData()
     }
 
-    fun loadData() {
-        databaseInstance = (applicationContext as SaveMyKeysApplication).getDatabaseInstance();
-        recordDao = databaseInstance?.recordDao()
-        recordList = recordDao?.getRecords()
-        recordAdapter = recordList?.let { RecordAdapter(this, it) }
-        rvHome.layoutManager = LinearLayoutManager(this)
-        rvHome.adapter = recordAdapter
+    private fun loadData() {
+        Log.d(TAG, "loadData()")
+        recordViewModel.getAllRecords().observe(this,
+            Observer<List<Record>> { t ->
+                recordAdapter!!.setDataToList(t!!)
+                Log.d(TAG, "" + t.size)
+            })
+
     }
+
+    override fun deleteRecord(record: Record) {
+        Log.d(TAG, "deleteRecord() $record")
+        recordViewModel.delete(record)
+        AppUtils.showSnackBarMessageById(this, coordinator, R.string.recordDeletedSuccessfully)
+    }
+
 }

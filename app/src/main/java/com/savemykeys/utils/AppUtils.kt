@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 
 class AppUtils {
+
     companion object {
 
         fun showToastMessage(
@@ -14,7 +15,6 @@ class AppUtils {
             duration: Int = Toast.LENGTH_SHORT
         ) {
             Toast.makeText(context, message, duration).show()
-
         }
 
         fun showToastMessageById(
@@ -23,24 +23,22 @@ class AppUtils {
             duration: Int = Toast.LENGTH_SHORT
         ) {
             Toast.makeText(context, context.getString(id), duration).show()
-
         }
 
-        fun showSnackBarMessage(view: View,
+        fun showSnackBarMessage(
+            view: View,
             message: String,
             duration: Int = Snackbar.LENGTH_SHORT
         ) {
-            Snackbar.make(view,message, duration).show()
-
+            Snackbar.make(view, message, duration).show()
         }
 
         fun showSnackBarMessageById(
-            context: Context,view: View,
+            context: Context, view: View,
             id: Int,
             duration: Int = Snackbar.LENGTH_SHORT
         ) {
             Snackbar.make(view, context.getString(id), duration).show()
-
         }
     }
 
