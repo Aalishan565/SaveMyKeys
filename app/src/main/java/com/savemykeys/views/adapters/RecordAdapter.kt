@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.savemykeys.R
 import com.savemykeys.db.entity.Record
 import com.savemykeys.utils.Constants
-import com.savemykeys.views.activities.AddRecordActivity
+import com.savemykeys.views.activities.AddKeyActivity
 import com.savemykeys.views.listeners.RecordDeleteListener
 import kotlinx.android.synthetic.main.row_items_record.view.*
 
@@ -47,10 +47,10 @@ class RecordAdapter(
         holder.tvUrl.text = recordList[position].url
         holder.tvUserName.text = recordList[position].userName
         holder.cardRowItem.setOnClickListener {
-            val intent = Intent(context, AddRecordActivity::class.java)
+            val intent = Intent(context, AddKeyActivity::class.java)
             intent.putExtra(Constants.SINGLE_RECORD, recordList[position])
             intent.putExtra(
-                Constants.SINGLE_RECORD_SCREEN_TITLE,
+                Constants.ADD_KEY_SCREEN_TITLE,
                 context.getString(R.string.record)
             )
             context.startActivity(intent)

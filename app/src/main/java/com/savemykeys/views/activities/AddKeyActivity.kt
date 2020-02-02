@@ -15,11 +15,11 @@ import com.savemykeys.viewmodel.RecordViewModel
 import kotlinx.android.synthetic.main.activity_add_record.*
 
 
-class AddRecordActivity : AppCompatActivity() {
+class AddKeyActivity : AppCompatActivity() {
 
     private val TAG = "AddRecordActivity"
-    private lateinit var recordViewModel: RecordViewModel
     private var screenTitle: String? = null
+    private lateinit var recordViewModel: RecordViewModel
     private var record: Record? = null
 
     override fun onSupportNavigateUp(): Boolean {
@@ -34,9 +34,9 @@ class AddRecordActivity : AppCompatActivity() {
         Log.d(TAG, "onCreate()")
         recordViewModel = ViewModelProviders.of(this).get(RecordViewModel::class.java)
         val bundle = intent.extras
-        screenTitle = bundle?.getString(Constants.SINGLE_RECORD_SCREEN_TITLE)
-        toolbar.title = screenTitle
-        setSupportActionBar(toolbar)
+        screenTitle = bundle?.getString(Constants.ADD_KEY_SCREEN_TITLE)
+        toolbarAddKey.title = screenTitle
+        setSupportActionBar(toolbarAddKey)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp)
@@ -52,7 +52,7 @@ class AddRecordActivity : AppCompatActivity() {
 
         btnSave.setOnClickListener {
             Log.d(TAG, "btnSave()")
-            if (screenTitle.equals(getString(R.string.addRecord), ignoreCase = true)) {
+            if (screenTitle.equals(getString(R.string.addKey), ignoreCase = true)) {
                 recordViewModel.addOrUpdateRecord(
                     etSiteUrl.text.toString(),
                     etUserName.text.toString(),
@@ -85,9 +85,7 @@ class AddRecordActivity : AppCompatActivity() {
         }
         recordViewModel.getRecordStatus()
             .observe(this,
-                Observer<Int> { message ->
-                    this.let { showRecordStatus(message) }
-                }
+                Observer<Int> { message -> showRecordStatus(message) }
             )
     }
 
