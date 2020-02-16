@@ -2,10 +2,10 @@ package com.savemykeys.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.savemykeys.db.daos.RecordDao
-import com.savemykeys.db.entity.Record
+import com.savemykeys.db.daos.KeyDao
+import com.savemykeys.db.entity.Key
 
-@Database(entities = [Record::class], version = 1, exportSchema = false)
+@Database(entities = [Key::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun recordDao(): RecordDao
+    abstract fun keyDao(): KeyDao
 }

@@ -21,7 +21,7 @@
     <string name="recordAddedSuccessfully">Record added successfully</string>
     <string name="record">Record</string>
     <string name="addKey">Add Key</string>
-    <string name="addMemory">Add Memory</string>
+    <string name="addMemory">Add Memory / Note</string>
     <string name="addReminder">Add Reminder</string>
     <string name="recordDeletedSuccessfully">Record deleted successfully.</string>
     <string name="enter_url_or_site_remark">Enter url or site remark</string>

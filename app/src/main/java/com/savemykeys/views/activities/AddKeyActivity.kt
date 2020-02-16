@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.savemykeys.R
-import com.savemykeys.db.entity.Record
+import com.savemykeys.db.entity.Key
 import com.savemykeys.utils.AppUtils
 import com.savemykeys.utils.Constants
-import com.savemykeys.viewmodel.RecordViewModel
+import com.savemykeys.viewmodel.KeyViewModel
 import kotlinx.android.synthetic.main.activity_add_record.*
 
 
@@ -19,8 +19,8 @@ class AddKeyActivity : AppCompatActivity() {
 
     private val TAG = "AddRecordActivity"
     private var screenTitle: String? = null
-    private lateinit var recordViewModel: RecordViewModel
-    private var record: Record? = null
+    private lateinit var keyViewModel: KeyViewModel
+    private var key: Key? = null
 
     override fun onSupportNavigateUp(): Boolean {
         Log.d(TAG, "onSupportNavigateUp()")
@@ -32,7 +32,7 @@ class AddKeyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_record)
         Log.d(TAG, "onCreate()")
-        recordViewModel = ViewModelProviders.of(this).get(RecordViewModel::class.java)
+        keyViewModel = ViewModelProviders.of(this).get(KeyViewModel::class.java)
         val bundle = intent.extras
         screenTitle = bundle?.getString(Constants.ADD_KEY_SCREEN_TITLE)
         toolbarAddKey.title = screenTitle
@@ -41,19 +41,19 @@ class AddKeyActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp)
         ivPwdVisibility.isChecked = true
-        record = bundle?.getParcelable(Constants.SINGLE_RECORD)
-        if (null != record) {
-            Log.d(TAG, "record not null: $record")
-            etSiteUrl.setText(record?.url)
-            etUserName.setText(record?.userName)
-            etPassword.setText(record?.password)
-            etNote.setText(record?.note)
+        key = bundle?.getParcelable(Constants.SINGLE_RECORD)
+        if (null != key) {
+            Log.d(TAG, "record not null: $key")
+            etSiteUrl.setText(key?.url)
+            etUserName.setText(key?.userName)
+            etPassword.setText(key?.password)
+            etNote.setText(key?.note)
         }
 
         btnSave.setOnClickListener {
             Log.d(TAG, "btnSave()")
             if (screenTitle.equals(getString(R.string.addKey), ignoreCase = true)) {
-                recordViewModel.addOrUpdateRecord(
+                keyViewModel.addOrUpdateKey(
                     etSiteUrl.text.toString(),
                     etUserName.text.toString(),
                     etPassword.text.toString(),
@@ -61,12 +61,12 @@ class AddKeyActivity : AppCompatActivity() {
                 )
 
             } else {
-                recordViewModel.addOrUpdateRecord(
+                keyViewModel.addOrUpdateKey(
                     etSiteUrl.text.toString(),
                     etUserName.text.toString(),
                     etPassword.text.toString(),
                     etNote.text.toString(), false,
-                    record!!.recordId
+                    key!!.recordId
                 )
             }
 
@@ -83,7 +83,7 @@ class AddKeyActivity : AppCompatActivity() {
                 ivPwdVisibility.setBackgroundResource(R.drawable.ic_visibility_off_black_24dp)
             }
         }
-        recordViewModel.getRecordStatus()
+        keyViewModel.getKeyStatus()
             .observe(this,
                 Observer<Int> { message -> showRecordStatus(message) }
             )

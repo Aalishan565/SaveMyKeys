@@ -6,36 +6,35 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.savemykeys.R
-import com.savemykeys.db.entity.Record
-import com.savemykeys.repositories.RecordRepository
+import com.savemykeys.db.entity.Key
+import com.savemykeys.repositories.KeyRepository
 
-class RecordViewModel(application: Application) : AndroidViewModel(application) {
+class KeyViewModel(application: Application) : AndroidViewModel(application) {
 
     private val TAG = "RecordViewModel"
-    private var repository: RecordRepository = RecordRepository(application)
+    private var repository: KeyRepository = KeyRepository(application)
     private var recordStatus: MutableLiveData<Int> = MutableLiveData()
 
-
-    fun delete(record: Record) {
-        Log.d(TAG, "delete() $record")
-        repository.deleteRecord(record)
+    fun deleteKey(key: Key) {
+        Log.d(TAG, "delete() $key")
+        repository.deleteKey(key)
     }
 
-    fun deleteAllRecord() {
+    fun deleteAllKeys() {
         Log.d(TAG, "deleteAllRecord()")
-        repository.deleteAllRecord()
+        repository.deleteAllKeys()
     }
 
-    fun getAllRecords(): LiveData<List<Record>> {
+    fun getAllKeys(): LiveData<List<Key>> {
         Log.d(TAG, "getAllRecords()")
-        return repository.getAllRecords()
+        return repository.getAllKeys()
     }
 
-    fun getRecordStatus(): LiveData<Int> {
+    fun getKeyStatus(): LiveData<Int> {
         return recordStatus
     }
 
-    fun addOrUpdateRecord(
+    fun addOrUpdateKey(
         url: String,
         userName: String,
         password: String,
@@ -61,14 +60,14 @@ class RecordViewModel(application: Application) : AndroidViewModel(application) 
                 return
             }
             else -> {
-                val record: Record
+                val key: Key
                 if (insert) {
-                    record = Record(url, userName, password, note)
-                    repository.insertRecord(record)
+                    key = Key(url, userName, password, note)
+                    repository.insertKey(key)
                     recordStatus.value = R.string.recordAddedSuccessfully
                 } else {
-                    record = Record(url, userName, password, note, recordId)
-                    repository.updateRecord(record)
+                    key = Key(url, userName, password, note, recordId)
+                    repository.updateKey(key)
                     recordStatus.value = R.string.recordUpdatedSuccessfully
                 }
 

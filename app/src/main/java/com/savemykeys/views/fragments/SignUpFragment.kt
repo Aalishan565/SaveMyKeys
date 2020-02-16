@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.savemykeys.R
 import com.savemykeys.utils.AppUtils
 import com.savemykeys.viewmodel.LoginSignUpViewModel
-import com.savemykeys.viewmodel.RecordViewModel
+import com.savemykeys.viewmodel.KeyViewModel
 import com.savemykeys.views.activities.HomeActivity
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
@@ -24,7 +24,7 @@ class SignUpFragment : Fragment(), View.OnClickListener {
 
     private val TAG = "SignUpFragment"
     private lateinit var loginSignUpViewModel: LoginSignUpViewModel
-    private lateinit var recordViewModel: RecordViewModel
+    private lateinit var keyViewModel: KeyViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +38,7 @@ class SignUpFragment : Fragment(), View.OnClickListener {
         super.onActivityCreated(savedInstanceState)
         Log.d(TAG, "onActivityCreated()")
         loginSignUpViewModel = ViewModelProviders.of(this).get(LoginSignUpViewModel::class.java)
-        recordViewModel = ViewModelProviders.of(this).get(RecordViewModel::class.java)
+        keyViewModel = ViewModelProviders.of(this).get(KeyViewModel::class.java)
         btnSignUp.setOnClickListener(this)
         loginSignUpViewModel.getSignUpStatus()
             .observe(this,
@@ -65,7 +65,7 @@ class SignUpFragment : Fragment(), View.OnClickListener {
                 ignoreCase = true
             )
         ) {
-            recordViewModel.deleteAllRecord()
+            keyViewModel.deleteAllKeys()
             val intent = Intent(activity, HomeActivity::class.java)
             startActivity(intent)
             activity?.finish()

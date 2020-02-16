@@ -41,19 +41,26 @@ class LoginSignUpViewModel(application: Application) : AndroidViewModel(applicat
 
     fun doSignUp(pin: String, confirmPin: String) {
         Log.d(TAG, "doSignUp() pin: $pin confirmPin: $confirmPin")
-        if (pin.isBlank()) {
-            Log.d(TAG, "doSignUp() pin is blank")
-            signUpStatus.value = R.string.emptyPinMessage
-            return
-        } else if (confirmPin.isBlank()) {
-            Log.d(TAG, "doSignUp() confirmPin is Blank")
-            signUpStatus.value = R.string.emptyPinMessage
-        } else if (pin != confirmPin) {
-            Log.d(TAG, "confirm pin $confirmPin and pin $pin does not match")
-            signUpStatus.value = R.string.pinDoesNotMatch
-        } else {
-            userRepository.doSignUp(pin)
-            signUpStatus.value = R.string.signUpSuccess
+        when {
+            pin.isBlank() -> {
+                Log.d(TAG, "doSignUp() pin is blank")
+                signUpStatus.value = R.string.emptyPinMessage
+                return
+            }
+            confirmPin.isBlank() -> {
+                Log.d(TAG, "doSignUp() confirmPin is Blank")
+                signUpStatus.value = R.string.emptyPinMessage
+                return
+            }
+            pin != confirmPin -> {
+                Log.d(TAG, "confirm pin $confirmPin and pin $pin does not match")
+                signUpStatus.value = R.string.pinDoesNotMatch
+                return
+            }
+            else -> {
+                userRepository.doSignUp(pin)
+                signUpStatus.value = R.string.signUpSuccess
+            }
         }
     }
 
