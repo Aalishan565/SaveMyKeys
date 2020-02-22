@@ -54,6 +54,10 @@
                     android:hint="Choose Memory / Note date"
                     android:maxLength="100"
                     android:maxLines="1"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:imeOptions="actionNext"
+                    android:inputType="date"
                     android:minHeight="@dimen/dimen_50dp"
                     android:textSize="@dimen/dimen_20sp" />
             </com.google.android.material.textfield.TextInputLayout>
