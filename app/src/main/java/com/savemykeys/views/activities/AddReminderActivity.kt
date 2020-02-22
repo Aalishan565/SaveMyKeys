@@ -75,7 +75,9 @@ class AddReminderActivity : AppCompatActivity() {
                     etReminderTitle.text.toString(),
                     etReminderDate.text.toString(),
                     etReminderNote.text.toString(),
-                    false
+                    false, reminder!!.reminderId
+
+
                 )
             }
 
@@ -103,7 +105,7 @@ class AddReminderActivity : AppCompatActivity() {
     private fun showRecordStatus(message: Int) {
         Log.d(TAG, "showRecordStatus() ${getString(message)}")
         AppUtils.showToastMessageById(this, message)
-        if (message == R.string.recordAddedSuccessfully) {
+        if (message == R.string.recordAddedSuccessfully || message == R.string.recordUpdatedSuccessfully) {
             finish()
         }
     }

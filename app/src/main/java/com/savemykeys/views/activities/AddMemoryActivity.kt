@@ -76,7 +76,8 @@ class AddMemoryActivity : AppCompatActivity() {
                     etMemoryTitle.text.toString(),
                     etMemoryDate.text.toString(),
                     etMemoryNote.text.toString(),
-                    false
+                    false,
+                    memory!!.memoryId
                 )
             }
 
@@ -104,7 +105,7 @@ class AddMemoryActivity : AppCompatActivity() {
     private fun showRecordStatus(message: Int) {
         Log.d(TAG, "showRecordStatus() ${getString(message)}")
         AppUtils.showToastMessageById(this, message)
-        if (message == R.string.recordAddedSuccessfully) {
+        if (message == R.string.recordAddedSuccessfully || message == R.string.recordUpdatedSuccessfully) {
             finish()
         }
     }

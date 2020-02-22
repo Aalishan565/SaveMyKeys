@@ -12,6 +12,7 @@ import com.savemykeys.R
 import com.savemykeys.db.entity.Reminder
 import com.savemykeys.utils.Constants
 import com.savemykeys.views.activities.AddMemoryActivity
+import com.savemykeys.views.activities.AddReminderActivity
 import com.savemykeys.views.listeners.RecordDeleteListener
 import kotlinx.android.synthetic.main.row_items_memory_reminder.view.*
 
@@ -55,7 +56,7 @@ class ReminderAdapter(
             holder.ivMoreLess.setImageResource(R.drawable.ic_expand_more_black_24dp)
         }
         holder.ivEdit.setOnClickListener {
-            val intent = Intent(context, AddMemoryActivity::class.java)
+            val intent = Intent(context, AddReminderActivity::class.java)
             intent.putExtra(Constants.SINGLE_RECORD, reminderList[position])
             intent.putExtra(
                 Constants.ADD_KEY_SCREEN_TITLE,

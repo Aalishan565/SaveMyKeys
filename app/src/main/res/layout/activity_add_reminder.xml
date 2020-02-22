@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left|top"
                     android:hint="@string/add_some_note_here"
-                    android:inputType="textCapSentences"
+                    android:inputType="textCapSentences|textMultiLine"
                     android:maxLength="200"
                     android:maxLines="3"
                     android:minHeight="@dimen/dimen_100dp"
