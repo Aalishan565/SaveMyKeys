@@ -8,47 +8,50 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.savemykeys.R
-import com.savemykeys.db.entity.Key
+import com.savemykeys.db.entity.Memory
 import com.savemykeys.utils.Constants
-import com.savemykeys.views.activities.AddKeyActivity
+import com.savemykeys.views.activities.AddMemoryActivity
 import com.savemykeys.views.listeners.RecordDeleteListener
-import kotlinx.android.synthetic.main.row_items_key.view.*
+import kotlinx.android.synthetic.main.row_items_key.view.cardRowItem
+import kotlinx.android.synthetic.main.row_items_key.view.ivDelete
+import kotlinx.android.synthetic.main.row_items_memory_reminder.view.*
 
 
-class KeyAdapter(
+class MemoryAdapter(
     private val context: Context,
     private val deleteListener: RecordDeleteListener
 ) :
-    RecyclerView.Adapter<KeyAdapter.ViewHolder>() {
+    RecyclerView.Adapter<MemoryAdapter.ViewHolder>() {
 
-    private val TAG = "KeyAdapter"
-    private var keyList: List<Key> = ArrayList()
+    private val TAG = "MemoryAdapter"
+    private var memoryList: List<Memory> = ArrayList()
     private lateinit var view: View
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         Log.d(TAG, "onCreateViewHolder()")
-        view = LayoutInflater.from(context).inflate(R.layout.row_items_key, parent, false)
+        view =
+            LayoutInflater.from(context).inflate(R.layout.row_items_memory_reminder, parent, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        Log.d(TAG, "getItemCount ${keyList.size}")
-        return keyList.size
+        Log.d(TAG, "getItemCount ${memoryList.size}")
+        return memoryList.size
     }
 
-    fun setDataToList(keyList: List<Key>) {
-        Log.d(TAG, "setDataToList() $keyList")
-        this.keyList = keyList
+    fun setDataToList(memoryList: List<Memory>) {
+        Log.d(TAG, "setDataToList() $memoryList")
+        this.memoryList = memoryList
         notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.d(TAG, "onBindViewHolder() position: $position")
-        holder.tvUrl.text = keyList[position].url
-        holder.tvUserName.text = keyList[position].userName
+        holder.tvTitle.text = memoryList[position].memoryTitle
+        holder.tvDate.text = memoryList[position].memoryDate
         holder.cardRowItem.setOnClickListener {
-            val intent = Intent(context, AddKeyActivity::class.java)
-            intent.putExtra(Constants.SINGLE_RECORD, keyList[position])
+            val intent = Intent(context, AddMemoryActivity::class.java)
+            intent.putExtra(Constants.SINGLE_RECORD, memoryList[position])
             intent.putExtra(
                 Constants.ADD_KEY_SCREEN_TITLE,
                 context.getString(R.string.record)
@@ -56,14 +59,14 @@ class KeyAdapter(
             context.startActivity(intent)
         }
         holder.ivDelete.setOnClickListener {
-            deleteListener.deleteKey(keyList[position])
+            deleteListener.deleteKey(memoryList[position])
         }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val cardRowItem = view.cardRowItem!!
-        val tvUrl = view.tvUrl!!
-        val tvUserName = view.tvUserName!!
+        val tvTitle = view.tvTitle!!
+        val tvDate = view.tvDate!!
         val ivDelete = view.ivDelete!!
     }
 }

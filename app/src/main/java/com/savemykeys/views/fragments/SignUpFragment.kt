@@ -12,8 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.savemykeys.R
 import com.savemykeys.utils.AppUtils
-import com.savemykeys.viewmodel.LoginSignUpViewModel
 import com.savemykeys.viewmodel.KeyViewModel
+import com.savemykeys.viewmodel.LoginSignUpViewModel
 import com.savemykeys.views.activities.HomeActivity
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 

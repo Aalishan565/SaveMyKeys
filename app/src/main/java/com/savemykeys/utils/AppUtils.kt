@@ -41,6 +41,7 @@ class AppUtils {
         ) {
             Snackbar.make(view, context.getString(id), duration).show()
         }
+
         fun hideKeyboard(
             mContext: Context,
             v: View?

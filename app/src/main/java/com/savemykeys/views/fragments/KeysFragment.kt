@@ -12,16 +12,18 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.savemykeys.R
 import com.savemykeys.db.entity.Key
+import com.savemykeys.db.entity.Memory
+import com.savemykeys.db.entity.Reminder
 import com.savemykeys.utils.AppUtils
 import com.savemykeys.viewmodel.KeyViewModel
 import com.savemykeys.views.adapters.KeyAdapter
-import com.savemykeys.views.listeners.KeyDeleteListener
+import com.savemykeys.views.listeners.RecordDeleteListener
 import kotlinx.android.synthetic.main.fragment_keys.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class KeysFragment : Fragment(), KeyDeleteListener {
+class KeysFragment : Fragment(), RecordDeleteListener {
 
     private lateinit var keyViewModel: KeyViewModel
     private var keyAdapter: KeyAdapter? = null

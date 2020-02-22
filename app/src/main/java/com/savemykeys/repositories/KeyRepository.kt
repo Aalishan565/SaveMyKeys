@@ -3,7 +3,6 @@ package com.savemykeys.repositories
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.savemykeys.application.SaveMyKeysApplication
 import com.savemykeys.db.AppDatabase
 import com.savemykeys.db.daos.KeyDao
 import com.savemykeys.db.entity.Key
@@ -14,7 +13,7 @@ class KeyRepository(context: Context) {
     private var keyDao: KeyDao? = null
 
     init {
-        keyDao= AppDatabase(context).keyDao()
+        keyDao = AppDatabase(context).keyDao()
     }
 
     fun deleteKey(key: Key) {

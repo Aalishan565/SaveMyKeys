@@ -32,7 +32,6 @@ class AddKeyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_record)
         Log.d(TAG, "onCreate()")
-        keyViewModel = ViewModelProviders.of(this).get(KeyViewModel::class.java)
         val bundle = intent.extras
         screenTitle = bundle?.getString(Constants.ADD_KEY_SCREEN_TITLE)
         toolbarAddKey.title = screenTitle
@@ -41,6 +40,7 @@ class AddKeyActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back_white_24dp)
         ivPwdVisibility.isChecked = true
+        keyViewModel = ViewModelProviders.of(this).get(KeyViewModel::class.java)
         key = bundle?.getParcelable(Constants.SINGLE_RECORD)
         if (null != key) {
             Log.d(TAG, "record not null: $key")
