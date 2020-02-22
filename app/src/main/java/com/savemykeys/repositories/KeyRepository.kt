@@ -11,13 +11,10 @@ import com.savemykeys.db.entity.Key
 class KeyRepository(context: Context) {
 
     private val TAG = "RecordRepository"
-    private var databaseInstance: AppDatabase? = null
     private var keyDao: KeyDao? = null
 
     init {
-        databaseInstance =
-            (context.applicationContext as SaveMyKeysApplication).getDatabaseInstance()
-        keyDao = databaseInstance?.keyDao()
+        keyDao= AppDatabase(context).keyDao()
     }
 
     fun deleteKey(key: Key) {
