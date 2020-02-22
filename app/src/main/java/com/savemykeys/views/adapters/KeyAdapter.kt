@@ -6,13 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.savemykeys.R
 import com.savemykeys.db.entity.Key
 import com.savemykeys.utils.Constants
 import com.savemykeys.views.activities.AddKeyActivity
 import com.savemykeys.views.listeners.RecordDeleteListener
-import kotlinx.android.synthetic.main.row_items_key.view.*
+import kotlinx.android.synthetic.main.row_items_memory_reminder.view.*
 
 
 class KeyAdapter(
@@ -27,7 +28,8 @@ class KeyAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         Log.d(TAG, "onCreateViewHolder()")
-        view = LayoutInflater.from(context).inflate(R.layout.row_items_key, parent, false)
+        view =
+            LayoutInflater.from(context).inflate(R.layout.row_items_memory_reminder, parent, false)
         return ViewHolder(view)
     }
 
@@ -46,7 +48,13 @@ class KeyAdapter(
         Log.d(TAG, "onBindViewHolder() position: $position")
         holder.tvUrl.text = keyList[position].url
         holder.tvUserName.text = keyList[position].userName
-        holder.cardRowItem.setOnClickListener {
+        holder.tvNote.text = keyList[position].note
+        if (holder.rlMoreOrLess.isVisible) {
+            holder.ivMoreLess.setImageResource(R.drawable.ic_expand_less_black_24dp)
+        } else {
+            holder.ivMoreLess.setImageResource(R.drawable.ic_expand_more_black_24dp)
+        }
+        holder.ivEdit.setOnClickListener {
             val intent = Intent(context, AddKeyActivity::class.java)
             intent.putExtra(Constants.SINGLE_RECORD, keyList[position])
             intent.putExtra(
@@ -58,12 +66,24 @@ class KeyAdapter(
         holder.ivDelete.setOnClickListener {
             deleteListener.deleteKey(keyList[position])
         }
+        holder.ivMoreLess.setOnClickListener {
+            if (holder.rlMoreOrLess.isVisible) {
+                holder.ivMoreLess.setImageResource(R.drawable.ic_expand_more_black_24dp)
+                holder.rlMoreOrLess.visibility = View.GONE
+            } else {
+                holder.ivMoreLess.setImageResource(R.drawable.ic_expand_less_black_24dp)
+                holder.rlMoreOrLess.visibility = View.VISIBLE
+            }
+        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val cardRowItem = view.cardRowItem!!
-        val tvUrl = view.tvUrl!!
-        val tvUserName = view.tvUserName!!
+        val tvUrl = view.tvTitle!!
+        val tvNote = view.tvNote!!
+        val tvUserName = view.tvDate!!
         val ivDelete = view.ivDelete!!
+        val ivMoreLess = view.ivMoreLess!!
+        val ivEdit = view.ivEdit!!
+        val rlMoreOrLess = view.rlMoreOrLess!!
     }
 }

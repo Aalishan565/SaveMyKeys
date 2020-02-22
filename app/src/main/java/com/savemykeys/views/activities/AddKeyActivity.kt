@@ -12,7 +12,7 @@ import com.savemykeys.db.entity.Key
 import com.savemykeys.utils.AppUtils
 import com.savemykeys.utils.Constants
 import com.savemykeys.viewmodel.KeyViewModel
-import kotlinx.android.synthetic.main.activity_add_record.*
+import kotlinx.android.synthetic.main.activity_add_key.*
 
 
 class AddKeyActivity : AppCompatActivity() {
@@ -30,7 +30,7 @@ class AddKeyActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_record)
+        setContentView(R.layout.activity_add_key)
         Log.d(TAG, "onCreate()")
         val bundle = intent.extras
         screenTitle = bundle?.getString(Constants.ADD_KEY_SCREEN_TITLE)
@@ -92,6 +92,8 @@ class AddKeyActivity : AppCompatActivity() {
     private fun showRecordStatus(message: Int) {
         Log.d(TAG, "showRecordStatus() ${getString(message)}")
         AppUtils.showToastMessageById(this, message)
-        finish()
+        if (message == R.string.recordAddedSuccessfully) {
+            finish()
+        }
     }
 }

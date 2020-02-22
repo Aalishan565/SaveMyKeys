@@ -6,14 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.savemykeys.R
 import com.savemykeys.db.entity.Memory
 import com.savemykeys.utils.Constants
 import com.savemykeys.views.activities.AddMemoryActivity
 import com.savemykeys.views.listeners.RecordDeleteListener
-import kotlinx.android.synthetic.main.row_items_key.view.cardRowItem
-import kotlinx.android.synthetic.main.row_items_key.view.ivDelete
 import kotlinx.android.synthetic.main.row_items_memory_reminder.view.*
 
 
@@ -49,7 +48,13 @@ class MemoryAdapter(
         Log.d(TAG, "onBindViewHolder() position: $position")
         holder.tvTitle.text = memoryList[position].memoryTitle
         holder.tvDate.text = memoryList[position].memoryDate
-        holder.cardRowItem.setOnClickListener {
+        holder.tvNote.text = memoryList[position].memoryNote
+        if (holder.rlMoreOrLess.isVisible) {
+            holder.ivMoreLess.setImageResource(R.drawable.ic_expand_less_black_24dp)
+        } else {
+            holder.ivMoreLess.setImageResource(R.drawable.ic_expand_more_black_24dp)
+        }
+        holder.ivEdit.setOnClickListener {
             val intent = Intent(context, AddMemoryActivity::class.java)
             intent.putExtra(Constants.SINGLE_RECORD, memoryList[position])
             intent.putExtra(
@@ -61,12 +66,24 @@ class MemoryAdapter(
         holder.ivDelete.setOnClickListener {
             deleteListener.deleteKey(memoryList[position])
         }
+        holder.ivMoreLess.setOnClickListener {
+            if (holder.rlMoreOrLess.isVisible) {
+                holder.ivMoreLess.setImageResource(R.drawable.ic_expand_more_black_24dp)
+                holder.rlMoreOrLess.visibility = View.GONE
+            } else {
+                holder.ivMoreLess.setImageResource(R.drawable.ic_expand_less_black_24dp)
+                holder.rlMoreOrLess.visibility = View.VISIBLE
+            }
+        }
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val cardRowItem = view.cardRowItem!!
         val tvTitle = view.tvTitle!!
         val tvDate = view.tvDate!!
         val ivDelete = view.ivDelete!!
+        val ivMoreLess = view.ivMoreLess!!
+        val ivEdit = view.ivEdit!!
+        val rlMoreOrLess = view.rlMoreOrLess!!
+        val tvNote = view.tvNote!!
     }
 }

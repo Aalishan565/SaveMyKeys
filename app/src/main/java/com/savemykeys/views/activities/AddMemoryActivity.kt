@@ -104,6 +104,8 @@ class AddMemoryActivity : AppCompatActivity() {
     private fun showRecordStatus(message: Int) {
         Log.d(TAG, "showRecordStatus() ${getString(message)}")
         AppUtils.showToastMessageById(this, message)
-        finish()
+        if (message == R.string.recordAddedSuccessfully) {
+            finish()
+        }
     }
 }
