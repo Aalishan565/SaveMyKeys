@@ -55,13 +55,10 @@ class KeyAdapter(
             holder.ivMoreLess.setImageResource(R.drawable.ic_expand_more_black_24dp)
         }
         holder.ivEdit.setOnClickListener {
-            val intent = Intent(context, AddKeyActivity::class.java)
-            intent.putExtra(Constants.SINGLE_RECORD, keyList[position])
-            intent.putExtra(
-                Constants.ADD_KEY_SCREEN_TITLE,
-                context.getString(R.string.record)
-            )
-            context.startActivity(intent)
+            navigateToNextPage(position)
+        }
+        holder.cardRowItem.setOnClickListener {
+            navigateToNextPage(position)
         }
         holder.ivDelete.setOnClickListener {
             deleteListener.deleteKey(keyList[position])
@@ -77,6 +74,16 @@ class KeyAdapter(
         }
     }
 
+    private fun navigateToNextPage(position: Int) {
+        val intent = Intent(context, AddKeyActivity::class.java)
+        intent.putExtra(Constants.SINGLE_RECORD, keyList[position])
+        intent.putExtra(
+            Constants.ADD_KEY_SCREEN_TITLE,
+            context.getString(R.string.record)
+        )
+        context.startActivity(intent)
+    }
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvUrl = view.tvTitle!!
         val tvNote = view.tvNote!!
@@ -85,5 +92,6 @@ class KeyAdapter(
         val ivMoreLess = view.ivMoreLess!!
         val ivEdit = view.ivEdit!!
         val rlMoreOrLess = view.rlMoreOrLess!!
+        val cardRowItem = view.cardRowItem!!
     }
 }
