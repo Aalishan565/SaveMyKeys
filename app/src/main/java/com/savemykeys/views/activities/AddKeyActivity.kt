@@ -14,7 +14,6 @@ import com.savemykeys.utils.Constants
 import com.savemykeys.viewmodel.KeyViewModel
 import kotlinx.android.synthetic.main.activity_add_key.*
 
-
 class AddKeyActivity : AppCompatActivity() {
 
     private val TAG = "AddRecordActivity"

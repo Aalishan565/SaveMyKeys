@@ -12,7 +12,6 @@ import com.savemykeys.db.entity.Memory
 import com.savemykeys.db.entity.Reminder
 import com.savemykeys.utils.Constants
 
-
 @Database(
     entities = [Key::class, Memory::class, Reminder::class],
     version = 1,

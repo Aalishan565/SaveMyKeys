@@ -3,9 +3,9 @@ package com.savemykeys.views.fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.inputmethod.EditorInfo
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -15,6 +15,7 @@ import com.savemykeys.R
 import com.savemykeys.db.entity.Reminder
 import com.savemykeys.utils.AppUtils
 import com.savemykeys.viewmodel.ReminderViewModel
+import com.savemykeys.views.activities.HomeActivity
 import com.savemykeys.views.adapters.ReminderAdapter
 import com.savemykeys.views.listeners.RecordDeleteListener
 import kotlinx.android.synthetic.main.fragment_keys.*
@@ -22,8 +23,9 @@ import kotlinx.android.synthetic.main.fragment_keys.*
 /**
  * A simple [Fragment] subclass.
  */
-class ReminderFragment : Fragment(), RecordDeleteListener {
+class ReminderFragment : Fragment(), RecordDeleteListener, SearchView.OnQueryTextListener {
 
+    private lateinit var searchView: SearchView
     private lateinit var reminderViewModel: ReminderViewModel
     private var reminderAdapter: ReminderAdapter? = null
     private val TAG = "KeysFragment"
@@ -32,7 +34,7 @@ class ReminderFragment : Fragment(), RecordDeleteListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_keys, container, false)
     }
 
@@ -44,6 +46,42 @@ class ReminderFragment : Fragment(), RecordDeleteListener {
         reminderViewModel = ViewModelProviders.of(this).get(ReminderViewModel::class.java)
         loadData()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        Log.d(TAG, "onCreateOptionsMenu()")
+        inflater?.inflate(R.menu.main_menu, menu)
+        val searchItem = menu!!.findItem(R.id.menu_search)
+        searchView = searchItem.actionView as SearchView
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE;
+        searchView.queryHint = "Search "
+        searchView.setOnQueryTextListener(this)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d(TAG, "onOptionsItemSelected()")
+        when (item.itemId) {
+            R.id.menu_search -> {
+            }
+            R.id.menu_share -> {
+                (activity as HomeActivity?)?.shareApp()
+            }
+            else -> {
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        return false
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        reminderAdapter?.filter?.filter(newText)
+        return true
+    }
+
 
     private fun loadData() {
         showProgressBar()

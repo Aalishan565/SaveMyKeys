@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.activity_add_reminder.*
 import java.text.DateFormat
 import java.util.*
 
-
 class AddReminderActivity : AppCompatActivity() {
 
     private lateinit var reminderViewModel: ReminderViewModel

@@ -1,6 +1,5 @@
 package com.savemykeys.views.fragments
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -19,9 +18,6 @@ import com.savemykeys.viewmodel.ReminderViewModel
 import com.savemykeys.views.activities.HomeActivity
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
-/**
- * A simple [Fragment] subclass.
- */
 class SignUpFragment : Fragment(), View.OnClickListener {
 
     private val TAG = "SignUpFragment"

@@ -12,7 +12,8 @@ data class Memory(
 
     @ColumnInfo(name = "memory_title") val memoryTitle: String,
     @ColumnInfo(name = "memory_date") val memoryDate: String,
-    @ColumnInfo(name = "memory_note") val memoryNote: String?, @PrimaryKey(autoGenerate = true) @ColumnInfo(
+    @ColumnInfo(name = "memory_note") val memoryNote: String?,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(
         name = "memoryId"
     ) var memoryId: Long = 0
 ) : Parcelable

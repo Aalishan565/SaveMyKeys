@@ -1,6 +1,5 @@
 package com.savemykeys.views.fragments
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -16,10 +15,6 @@ import com.savemykeys.viewmodel.LoginSignUpViewModel
 import com.savemykeys.views.activities.HomeActivity
 import kotlinx.android.synthetic.main.fragment_login.*
 
-
-/**
- * A simple [Fragment] subclass.
- */
 class LoginFragment : Fragment() {
 
     private val TAG = "LoginFragment"

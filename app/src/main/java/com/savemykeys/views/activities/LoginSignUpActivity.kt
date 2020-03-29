@@ -10,7 +10,6 @@ import com.savemykeys.views.fragments.LoginFragment
 import com.savemykeys.views.fragments.SignUpFragment
 import kotlinx.android.synthetic.main.activity_login_sign_up.*
 
-
 class LoginSignUpActivity : AppCompatActivity() {
 
     private val TAG = "LoginSignUpActivity"

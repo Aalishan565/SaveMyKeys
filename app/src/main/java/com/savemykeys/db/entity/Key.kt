@@ -13,5 +13,6 @@ data class Key(
     @ColumnInfo(name = "url") val url: String,
     @ColumnInfo(name = "user_name") val userName: String,
     @ColumnInfo(name = "password") val password: String,
-    @ColumnInfo(name = "note") val note: String?, @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "recordId") var recordId: Long = 0
+    @ColumnInfo(name = "note") val note: String?,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "recordId") var recordId: Long = 0
 ) : Parcelable

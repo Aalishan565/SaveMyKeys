@@ -3,9 +3,6 @@ package com.savemykeys.views.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
@@ -16,7 +13,6 @@ import com.savemykeys.views.fragments.KeysFragment
 import com.savemykeys.views.fragments.MemoryFragment
 import com.savemykeys.views.fragments.ReminderFragment
 import kotlinx.android.synthetic.main.activity_home.*
-
 
 class HomeActivity : AppCompatActivity() {
 
@@ -79,29 +75,7 @@ class HomeActivity : AppCompatActivity() {
         viewPager.adapter = viewPagerAdapter
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        Log.d(TAG, "onCreateOptionsMenu()")
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Log.d(TAG, "onOptionsItemSelected()")
-        when (item.itemId) {
-            /*R.id.menu_search -> {
-            }*/
-            R.id.menu_share -> {
-                shareApp()
-            }
-            else -> {
-
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun shareApp() {
+    fun shareApp() {
         val sharingIntent = Intent(Intent.ACTION_SEND)
         sharingIntent.type = "text/plain"
         val shareBody =
@@ -115,4 +89,6 @@ class HomeActivity : AppCompatActivity() {
         super.onResume()
         Log.d(TAG, "onResume()")
     }
+
+
 }
