@@ -44,7 +44,7 @@ class KeysFragment : Fragment(), RecordDeleteListener, SearchView.OnQueryTextLis
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         Log.d(TAG, "onCreateOptionsMenu()")
         inflater?.inflate(R.menu.main_menu, menu)
