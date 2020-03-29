@@ -14,6 +14,8 @@ import com.savemykeys.R
 import com.savemykeys.utils.AppUtils
 import com.savemykeys.viewmodel.KeyViewModel
 import com.savemykeys.viewmodel.LoginSignUpViewModel
+import com.savemykeys.viewmodel.MemoryViewModel
+import com.savemykeys.viewmodel.ReminderViewModel
 import com.savemykeys.views.activities.HomeActivity
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
@@ -25,6 +27,8 @@ class SignUpFragment : Fragment(), View.OnClickListener {
     private val TAG = "SignUpFragment"
     private lateinit var loginSignUpViewModel: LoginSignUpViewModel
     private lateinit var keyViewModel: KeyViewModel
+    private lateinit var reminderViewModel: ReminderViewModel
+    private lateinit var memoryViewModel: MemoryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +43,8 @@ class SignUpFragment : Fragment(), View.OnClickListener {
         Log.d(TAG, "onActivityCreated()")
         loginSignUpViewModel = ViewModelProviders.of(this).get(LoginSignUpViewModel::class.java)
         keyViewModel = ViewModelProviders.of(this).get(KeyViewModel::class.java)
+        reminderViewModel = ViewModelProviders.of(this).get(ReminderViewModel::class.java)
+        memoryViewModel = ViewModelProviders.of(this).get(MemoryViewModel::class.java)
         btnSignUp.setOnClickListener(this)
         loginSignUpViewModel.getSignUpStatus()
             .observe(this,
@@ -65,6 +71,8 @@ class SignUpFragment : Fragment(), View.OnClickListener {
                 ignoreCase = true
             )
         ) {
+            memoryViewModel.deleteAllMemory()
+            reminderViewModel.deleteAllReminder()
             keyViewModel.deleteAllKeys()
             val intent = Intent(activity, HomeActivity::class.java)
             startActivity(intent)

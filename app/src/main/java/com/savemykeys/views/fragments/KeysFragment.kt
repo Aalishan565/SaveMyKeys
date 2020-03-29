@@ -42,12 +42,8 @@ class KeysFragment : Fragment(), RecordDeleteListener {
         keyAdapter = activity?.let { KeyAdapter(it, this) }
         rvKeys.adapter = keyAdapter
         keyViewModel = ViewModelProviders.of(this).get(KeyViewModel::class.java)
-
-    }
-
-    override fun onResume() {
-        super.onResume()
         loadData()
+
     }
 
     private fun loadData() {

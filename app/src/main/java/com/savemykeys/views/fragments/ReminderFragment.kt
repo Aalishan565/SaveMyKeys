@@ -42,11 +42,6 @@ class ReminderFragment : Fragment(), RecordDeleteListener {
         reminderAdapter = activity?.let { ReminderAdapter(it, this) }
         rvKeys.adapter = reminderAdapter
         reminderViewModel = ViewModelProviders.of(this).get(ReminderViewModel::class.java)
-
-    }
-
-    override fun onResume() {
-        super.onResume()
         loadData()
     }
 

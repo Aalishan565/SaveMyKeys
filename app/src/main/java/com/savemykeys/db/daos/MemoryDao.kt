@@ -2,7 +2,6 @@ package com.savemykeys.db.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.savemykeys.db.entity.Key
 import com.savemykeys.db.entity.Memory
 
 

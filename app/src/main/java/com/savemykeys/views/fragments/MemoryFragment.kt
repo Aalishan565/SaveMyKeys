@@ -42,12 +42,8 @@ class MemoryFragment : Fragment(), RecordDeleteListener {
         memoryAdapter = activity?.let { MemoryAdapter(it, this) }
         rvKeys.adapter = memoryAdapter
         memoryViewModel = ViewModelProviders.of(this).get(MemoryViewModel::class.java)
-
-    }
-
-    override fun onResume() {
-        super.onResume()
         loadData()
+
     }
 
     private fun loadData() {

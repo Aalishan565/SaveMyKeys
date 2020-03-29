@@ -78,7 +78,7 @@ class MemoryViewModel(application: Application) : AndroidViewModel(application) 
 
     override fun onCleared() {
         super.onCleared()
-        Log.d("ViewModel","onCleared()")
+        Log.d("ViewModel", "onCleared()")
     }
 
 }
