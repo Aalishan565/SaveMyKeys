@@ -59,8 +59,8 @@ class ReminderAdapter(
             val intent = Intent(context, AddReminderActivity::class.java)
             intent.putExtra(Constants.SINGLE_RECORD, reminderList[position])
             intent.putExtra(
-                Constants.ADD_KEY_SCREEN_TITLE,
-                context.getString(R.string.record)
+                Constants.ADD_REMINDER_SCREEN_TITLE,
+                context.getString(R.string.editReminder)
             )
             context.startActivity(intent)
         }

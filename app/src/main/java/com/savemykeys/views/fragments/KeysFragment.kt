@@ -6,14 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.savemykeys.R
 import com.savemykeys.db.entity.Key
-import com.savemykeys.db.entity.Memory
-import com.savemykeys.db.entity.Reminder
 import com.savemykeys.utils.AppUtils
 import com.savemykeys.viewmodel.KeyViewModel
 import com.savemykeys.views.adapters.KeyAdapter
@@ -52,9 +51,11 @@ class KeysFragment : Fragment(), RecordDeleteListener {
     }
 
     private fun loadData() {
+        showProgressBar()
         Log.d(TAG, "loadData()")
         keyViewModel.getAllKeys().observe(this,
             Observer<List<Key>> { t ->
+                hideProgressBar()
                 keyAdapter!!.setDataToList(t!!)
                 Log.d(TAG, "" + t.size)
             })
@@ -69,5 +70,15 @@ class KeysFragment : Fragment(), RecordDeleteListener {
                 it, frameLayoutKey, R.string.recordDeletedSuccessfully
             )
         }
+    }
+
+    private fun hideProgressBar() {
+        if (null != progressBar && progressBar.isVisible) {
+            progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun showProgressBar() {
+        progressBar.visibility = View.VISIBLE
     }
 }

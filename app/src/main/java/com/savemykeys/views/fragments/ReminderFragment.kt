@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -16,7 +17,7 @@ import com.savemykeys.utils.AppUtils
 import com.savemykeys.viewmodel.ReminderViewModel
 import com.savemykeys.views.adapters.ReminderAdapter
 import com.savemykeys.views.listeners.RecordDeleteListener
-import kotlinx.android.synthetic.main.fragment_reminder.*
+import kotlinx.android.synthetic.main.fragment_keys.*
 
 /**
  * A simple [Fragment] subclass.
@@ -32,14 +33,14 @@ class ReminderFragment : Fragment(), RecordDeleteListener {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reminder, container, false)
+        return inflater.inflate(R.layout.fragment_keys, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        rvReminder.layoutManager = LinearLayoutManager(activity)
+        rvKeys.layoutManager = LinearLayoutManager(activity)
         reminderAdapter = activity?.let { ReminderAdapter(it, this) }
-        rvReminder.adapter = reminderAdapter
+        rvKeys.adapter = reminderAdapter
         reminderViewModel = ViewModelProviders.of(this).get(ReminderViewModel::class.java)
 
     }
@@ -50,9 +51,11 @@ class ReminderFragment : Fragment(), RecordDeleteListener {
     }
 
     private fun loadData() {
+        showProgressBar()
         Log.d(TAG, "loadData()")
         reminderViewModel.getAllReminder().observe(this,
             Observer<List<Reminder>> { t ->
+                hideProgressBar()
                 reminderAdapter!!.setDataToList(t!!)
                 Log.d(TAG, "" + t.size)
             })
@@ -64,9 +67,19 @@ class ReminderFragment : Fragment(), RecordDeleteListener {
         reminderViewModel.deleteReminder(reminder)
         context?.let {
             AppUtils.showSnackBarMessageById(
-                it, frameLayoutReminder, R.string.recordDeletedSuccessfully
+                it, frameLayoutKey, R.string.recordDeletedSuccessfully
             )
         }
+    }
+
+    private fun hideProgressBar() {
+        if (null != progressBar && progressBar.isVisible) {
+            progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun showProgressBar() {
+        progressBar.visibility = View.VISIBLE
     }
 
 }

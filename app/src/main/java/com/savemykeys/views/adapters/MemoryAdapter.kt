@@ -54,30 +54,10 @@ class MemoryAdapter(
         } else {
             holder.ivMoreLess.setImageResource(R.drawable.ic_expand_more_black_24dp)
         }
-        holder.ivEdit.setOnClickListener {
-            val intent = Intent(context, AddMemoryActivity::class.java)
-            intent.putExtra(Constants.SINGLE_RECORD, memoryList[position])
-            intent.putExtra(
-                Constants.ADD_KEY_SCREEN_TITLE,
-                context.getString(R.string.record)
-            )
-            context.startActivity(intent)
-        }
-        holder.ivDelete.setOnClickListener {
-            deleteListener.deleteKey(memoryList[position])
-        }
-        holder.ivMoreLess.setOnClickListener {
-            if (holder.rlMoreOrLess.isVisible) {
-                holder.ivMoreLess.setImageResource(R.drawable.ic_expand_more_black_24dp)
-                holder.rlMoreOrLess.visibility = View.GONE
-            } else {
-                holder.ivMoreLess.setImageResource(R.drawable.ic_expand_less_black_24dp)
-                holder.rlMoreOrLess.visibility = View.VISIBLE
-            }
-        }
     }
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder constructor(view: View) : RecyclerView.ViewHolder(view),
+        View.OnClickListener {
         val tvTitle = view.tvTitle!!
         val tvDate = view.tvDate!!
         val ivDelete = view.ivDelete!!
@@ -85,5 +65,40 @@ class MemoryAdapter(
         val ivEdit = view.ivEdit!!
         val rlMoreOrLess = view.rlMoreOrLess!!
         val tvNote = view.tvNote!!
+
+        init {
+            ivDelete.setOnClickListener(this)
+            ivMoreLess.setOnClickListener(this)
+            ivEdit.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            Log.d("v?.id", "${v?.id}")
+            when (v?.id) {
+                R.id.ivEdit -> {
+                    val intent = Intent(context, AddMemoryActivity::class.java)
+                    intent.putExtra(Constants.SINGLE_RECORD, memoryList[adapterPosition])
+                    intent.putExtra(
+                        Constants.ADD_MEMORY_SCREEN_TITLE,
+                        context.getString(R.string.editMemory)
+                    )
+                    context.startActivity(intent)
+                }
+                R.id.ivDelete -> deleteListener.deleteKey(memoryList[adapterPosition])
+                R.id.ivMoreLess -> {
+                    if (rlMoreOrLess.isVisible) {
+                        ivMoreLess.setImageResource(R.drawable.ic_expand_more_black_24dp)
+                        rlMoreOrLess.visibility = View.GONE
+                    } else {
+                        ivMoreLess.setImageResource(R.drawable.ic_expand_less_black_24dp)
+                        rlMoreOrLess.visibility = View.VISIBLE
+                    }
+                }
+                else -> {
+                }
+            }
+        }
+
     }
+
 }

@@ -79,7 +79,7 @@ class KeyAdapter(
         intent.putExtra(Constants.SINGLE_RECORD, keyList[position])
         intent.putExtra(
             Constants.ADD_KEY_SCREEN_TITLE,
-            context.getString(R.string.record)
+            context.getString(R.string.editKey)
         )
         context.startActivity(intent)
     }

@@ -26,7 +26,7 @@ class MemoryViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun getAllMemory(): LiveData<List<Memory>> {
-        Log.d(TAG, "getAllRecords()")
+        Log.d(TAG, "getAllMemory()")
         return repository.getAllMemory()
     }
 
@@ -74,4 +74,11 @@ class MemoryViewModel(application: Application) : AndroidViewModel(application) 
         }
 
     }
+
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.d("ViewModel","onCleared()")
+    }
+
 }

@@ -22,10 +22,12 @@
     <string name="memoryNoteMustNotBeEmpty">Note must not be empty.</string>
     <string name="recordUpdatedSuccessfully">Record updated successfully</string>
     <string name="recordAddedSuccessfully">Record added successfully</string>
-    <string name="record">Record</string>
+    <string name="editKey">Key</string>
     <string name="addKey">Add Key</string>
     <string name="addMemory">Add Memory / Note</string>
+    <string name="editMemory">Memory / Note</string>
     <string name="addReminder">Add Reminder</string>
+    <string name="editReminder">Reminder</string>
     <string name="recordDeletedSuccessfully">Record deleted successfully.</string>
     <string name="enter_url_or_site_remark">Enter url or site remark</string>
     <string name="enter_user_name">Enter user name</string>
