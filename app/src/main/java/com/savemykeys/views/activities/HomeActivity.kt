@@ -88,15 +88,27 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d(TAG, "onOptionsItemSelected()")
+        when (item.itemId) {
+            /*R.id.menu_search -> {
+            }*/
+            R.id.menu_share -> {
+                shareApp()
+            }
+            else -> {
+
+            }
+        }
         return super.onOptionsItemSelected(item)
-        /*   when (item.itemId) {
-               R.id.menu_search -> {
-               }
-               else -> {
+    }
 
-               }
-           }*/
-
+    private fun shareApp() {
+        val sharingIntent = Intent(Intent.ACTION_SEND)
+        sharingIntent.type = "text/plain"
+        val shareBody =
+            "https://play.google.com/store/apps/details?id=${application.packageName}"
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Save My Keys App")
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+        startActivity(Intent.createChooser(sharingIntent, "Share Via :"))
     }
 
     override fun onResume() {
