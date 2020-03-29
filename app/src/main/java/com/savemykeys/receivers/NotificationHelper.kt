@@ -5,15 +5,15 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
-import com.savemykeys.R
 
 class NotificationHelper(base: Context?) : ContextWrapper(base) {
 
     companion object {
-        const val channelID = "channelID"
-        const val channelName = "Channel Name"
+        const val channelID = "reminderChannelId"
+        const val channelName = "Reminder Channel"
     }
 
     private var mManager: NotificationManager? = null
@@ -48,9 +48,6 @@ class NotificationHelper(base: Context?) : ContextWrapper(base) {
             applicationContext,
             channelID
         )
-            .setContentTitle("Alarm!")
-            .setContentText("Your AlarmManager is working.")
-            .setSmallIcon(R.drawable.ic_expand_less_black_24dp)
-
-
+            .setContentTitle("Reminder")
+            .setContentText("You have some reminder.")
 }

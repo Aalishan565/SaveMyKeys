@@ -167,6 +167,8 @@ class AddReminderActivity : AppCompatActivity() {
         val alarmManager =
             getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(this, ReminderReceiver::class.java)
+        intent.putExtra("reminderTitle", reminder?.reminderTitle)
+        intent.putExtra("reminderNote", reminder?.reminderNote)
         val pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0)
         if (myCalendar.before(Calendar.getInstance())) {
             myCalendar.add(Calendar.DATE, 1)
