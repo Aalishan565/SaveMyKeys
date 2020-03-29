@@ -64,4 +64,9 @@ class LoginSignUpViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        Log.d("ViewMode", "LoginSignUpViewModel onCleared()")
+
+    }
 }

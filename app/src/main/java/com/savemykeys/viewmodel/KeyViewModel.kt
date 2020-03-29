@@ -75,4 +75,9 @@ class KeyViewModel(application: Application) : AndroidViewModel(application) {
         }
 
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.d("ViewMode", "KeyViewModel onCleared()")
+    }
 }

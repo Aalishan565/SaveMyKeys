@@ -74,4 +74,9 @@ class ReminderViewModel(application: Application) : AndroidViewModel(application
         }
 
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.d("ViewMode", "ReminderViewModel onCleared()")
+    }
 }
