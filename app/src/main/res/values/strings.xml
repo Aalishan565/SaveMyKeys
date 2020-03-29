@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">Save My Keys</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="enter_login_pin">Enter login pin</string>
     <string name="signUp">SignUp</string>
     <string name="set_login_pin">Set login pin</string>
@@ -15,12 +13,19 @@
     <string name="userNotFound">User not found</string>
     <string name="save">Save</string>
     <string name="urlMustNotBeEmpty">Url must not be empty.</string>
+    <string name="memoryTitleMustNotBeEmpty">Title must not be empty.</string>
     <string name="userNameMustNotBeEmpty">User name must not be empty.</string>
+    <string name="memoryMustNotBeEmpty">Date must not be empty.</string>
     <string name="passwordMustNotBeEmpty">Password must not be empty.</string>
+    <string name="memoryNoteMustNotBeEmpty">Note must not be empty.</string>
     <string name="recordUpdatedSuccessfully">Record updated successfully</string>
     <string name="recordAddedSuccessfully">Record added successfully</string>
-    <string name="record">Record</string>
-    <string name="addRecord">Add Record</string>
+    <string name="editKey">Key</string>
+    <string name="addKey">Add Key</string>
+    <string name="addMemory">Add Memory / Note</string>
+    <string name="editMemory">Memory / Note</string>
+    <string name="addReminder">Add Reminder</string>
+    <string name="editReminder">Reminder</string>
     <string name="recordDeletedSuccessfully">Record deleted successfully.</string>
     <string name="enter_url_or_site_remark">Enter url or site remark</string>
     <string name="enter_user_name">Enter user name</string>
@@ -30,6 +35,11 @@
     <string name="signup">SignUp</string>
     <string name="save_my_keys_local_app">Save my keys local app</string>
     <string name="search">Search</string>
+    <string name="share">Share</string>
     <string name="delete">Delete</string>
+    <string name="moreless">Show More Less</string>
     <string name="this_app_is_designed_for_offline_data_storage_we_ensure_your_data_is_fully_secure_to_your_apps_local_database_available_in_phone">This app is designed for offline data storage. We ensure your data is fully secure to your apps local database available in phone</string>
+    <string name="reminders">Reminders</string>
+    <string name="memories">Memories</string>
+    <string name="keys">Keys</string>
 </resources>

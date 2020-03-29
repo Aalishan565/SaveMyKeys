@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarAddKey"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -17,7 +17,7 @@
         android:id="@+id/tabMode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/toolbarAddKey"
         android:background="@color/colorPrimary"
         app:tabSelectedTextColor="@color/colorWhite"
         app:tabTextColor="#A6FFFFFF">

@@ -8,23 +8,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.savemykeys.R
 import com.savemykeys.utils.AppUtils
+import com.savemykeys.viewmodel.KeyViewModel
 import com.savemykeys.viewmodel.LoginSignUpViewModel
-import com.savemykeys.viewmodel.RecordViewModel
+import com.savemykeys.viewmodel.MemoryViewModel
+import com.savemykeys.viewmodel.ReminderViewModel
 import com.savemykeys.views.activities.HomeActivity
-import com.savemykeys.views.listeners.SignUpViewListener
 import kotlinx.android.synthetic.main.fragment_sign_up.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class SignUpFragment : Fragment(), View.OnClickListener, SignUpViewListener {
+class SignUpFragment : Fragment(), View.OnClickListener {
 
     private val TAG = "SignUpFragment"
     private lateinit var loginSignUpViewModel: LoginSignUpViewModel
-    private lateinit var recordViewModel: RecordViewModel
+    private lateinit var keyViewModel: KeyViewModel
+    private lateinit var reminderViewModel: ReminderViewModel
+    private lateinit var memoryViewModel: MemoryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +42,16 @@ class SignUpFragment : Fragment(), View.OnClickListener, SignUpViewListener {
         super.onActivityCreated(savedInstanceState)
         Log.d(TAG, "onActivityCreated()")
         loginSignUpViewModel = ViewModelProviders.of(this).get(LoginSignUpViewModel::class.java)
-        recordViewModel = ViewModelProviders.of(this).get(RecordViewModel::class.java)
-        loginSignUpViewModel.setSignUpViewListener(this)
+        keyViewModel = ViewModelProviders.of(this).get(KeyViewModel::class.java)
+        reminderViewModel = ViewModelProviders.of(this).get(ReminderViewModel::class.java)
+        memoryViewModel = ViewModelProviders.of(this).get(MemoryViewModel::class.java)
         btnSignUp.setOnClickListener(this)
+        loginSignUpViewModel.getSignUpStatus()
+            .observe(this,
+                Observer<Int> { message ->
+                    context?.let { signUpStatus(message) }
+                }
+            )
     }
 
     override fun onClick(view: View?) {
@@ -52,24 +63,24 @@ class SignUpFragment : Fragment(), View.OnClickListener, SignUpViewListener {
         }
     }
 
-    override fun showPinDoesNotMatchError(pinDoesNotMatch: Int) {
-        Log.d(TAG, "showPinDoesNotMatchError() pinDoesNotMatch")
-        activity?.let { AppUtils.showToastMessageById(it, pinDoesNotMatch) }
+    private fun signUpStatus(message: Int) {
+        Log.d(TAG, "signUpStatus() ${getString(message)}")
+        activity?.let { AppUtils.showToastMessageById(it, message) }
+        if (resources.getString(R.string.signUpSuccess).equals(
+                getString(message),
+                ignoreCase = true
+            )
+        ) {
+            memoryViewModel.deleteAllMemory()
+            reminderViewModel.deleteAllReminder()
+            keyViewModel.deleteAllKeys()
+            val intent = Intent(activity, HomeActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
+
     }
 
-    override fun signUpSuccess(signUpSuccessMessage: Int) {
-        Log.d(TAG, "signUpSuccess() signUpSuccessMessage")
-        activity?.let { AppUtils.showToastMessageById(it, signUpSuccessMessage) }
-        recordViewModel.deleteAllRecord()
-        val intent = Intent(activity, HomeActivity::class.java)
-        startActivity(intent)
-        activity?.finish()
-    }
-
-    override fun showEmptyPinError(emptyPinMessage: Int) {
-        Log.d(TAG, "showEmptyPinError() emptyPinMessage")
-        activity?.let { AppUtils.showToastMessageById(it, emptyPinMessage) }
-    }
 }
 
 

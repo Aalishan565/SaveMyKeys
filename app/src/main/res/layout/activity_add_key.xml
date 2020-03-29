@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarAddKey"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:titleTextColor="@color/colorWhite" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarAddKey">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_20dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSiteUrl"
+                style="@style/TilOutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSiteUrl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_url_or_site_remark"
+                    android:inputType="textCapSentences"
+                    android:maxLength="100"
+                    android:maxLines="2"
+                    android:minHeight="@dimen/dimen_50dp"
+                    android:textSize="@dimen/dimen_20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilUserName"
+                style="@style/TilOutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etUserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_user_name"
+                    android:inputType="textCapSentences"
+                    android:maxLength="100"
+                    android:maxLines="1"
+                    android:minHeight="@dimen/dimen_50dp"
+                    android:textSize="@dimen/dimen_20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlPasswordCnt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_20dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPassword"
+                    style="@style/TilOutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/enter_password"
+                        android:inputType="textPassword"
+                        android:maxLength="100"
+                        android:maxLines="1"
+                        android:minHeight="@dimen/dimen_50dp"
+                        android:textSize="@dimen/dimen_20sp">
+
+                    </com.google.android.material.textfield.TextInputEditText>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <CheckBox
+                    android:id="@+id/ivPwdVisibility"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dimen_20dp"
+                    android:background="@drawable/ic_visibility_off_black_24dp"
+                    android:button="@android:color/transparent">
+
+                </CheckBox>
+
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNote"
+                style="@style/TilOutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/add_some_note_here"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="200"
+                    android:maxLines="3"
+                    android:minHeight="@dimen/dimen_50dp"
+                    android:textSize="@dimen/dimen_20sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimen_20dp"
+                android:background="@color/colorPrimary"
+                android:minHeight="@dimen/dimen_50dp"
+                android:text="@string/save"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

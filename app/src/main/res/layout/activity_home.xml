@@ -1,41 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarHome"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayoutHome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbarHome"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="@string/app_name"
-            app:titleTextColor="@color/colorWhite" />
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appBarHome"
+            android:background="@color/colorPrimary"
+            app:elevation="6dp"
+            app:tabSelectedTextColor="@color/colorWhite"
+            app:tabTextColor="#A6FFFFFF">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarHome"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentTop="true"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="@string/app_name"
+                app:titleTextColor="@color/colorWhite" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvHome"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/searchViewHome"
-        android:layout_margin="@dimen/dimen_10dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolbarAddKey"
+                android:background="@color/colorPrimary"
+                app:tabSelectedTextColor="@color/colorWhite"
+                app:tabTextColor="#A6FFFFFF">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabReminderHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reminders" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabMemoryHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/memories" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabKeysHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/keys" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerHome"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/appbarHome"
+            android:foregroundGravity="center"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"></androidx.viewpager.widget.ViewPager>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            app:srcCompat="@drawable/ic_add_black_24dp" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

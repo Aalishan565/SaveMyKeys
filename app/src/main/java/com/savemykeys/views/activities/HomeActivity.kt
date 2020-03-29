@@ -7,40 +7,76 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.savemykeys.R
-import com.savemykeys.db.entity.Record
-import com.savemykeys.utils.AppUtils
 import com.savemykeys.utils.Constants
-import com.savemykeys.viewmodel.RecordViewModel
-import com.savemykeys.views.adapters.RecordAdapter
-import com.savemykeys.views.listeners.RecordDeleteListener
+import com.savemykeys.views.adapters.ViewPagerAdapter
+import com.savemykeys.views.fragments.KeysFragment
+import com.savemykeys.views.fragments.MemoryFragment
+import com.savemykeys.views.fragments.ReminderFragment
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity(), RecordDeleteListener {
+
+class HomeActivity : AppCompatActivity() {
 
     private val TAG = "HomeActivity"
-    private lateinit var recordViewModel: RecordViewModel
-    private var recordAdapter: RecordAdapter? = null
+    private lateinit var viewPagerAdapter: ViewPagerAdapter
+    private var fragmentPosition: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbarHome)
         Log.d(TAG, "onCreate()")
-        rvHome.layoutManager = LinearLayoutManager(this)
-        recordAdapter = RecordAdapter(this, this)
-        rvHome.adapter = recordAdapter
-        recordViewModel = ViewModelProviders.of(this).get(RecordViewModel::class.java)
-        fabAdd.setOnClickListener {
-            val intent = Intent(this, AddRecordActivity::class.java)
-            intent.putExtra(
-                Constants.SINGLE_RECORD_SCREEN_TITLE, getString(R.string.addRecord)
-            )
-            startActivity(intent)
+        setupViewPager(viewPagerHome)
+        tabHome.setupWithViewPager(viewPagerHome)
+        viewPagerHome.addOnPageChangeListener(object : OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                fragmentPosition = position
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {}
+        })
+        fabAddHome.setOnClickListener {
+
+            if (fragmentPosition == 0) {
+                val intent = Intent(this, AddMemoryActivity::class.java)
+                intent.putExtra(
+                    Constants.ADD_MEMORY_SCREEN_TITLE, getString(R.string.addMemory)
+                )
+                startActivity(intent)
+            } else if (fragmentPosition == 1) {
+                val intent = Intent(this, AddReminderActivity::class.java)
+                intent.putExtra(
+                    Constants.ADD_REMINDER_SCREEN_TITLE, getString(R.string.addReminder)
+                )
+                startActivity(intent)
+            } else {
+                val intent = Intent(this, AddKeyActivity::class.java)
+                intent.putExtra(
+                    Constants.ADD_KEY_SCREEN_TITLE, getString(R.string.addKey)
+                )
+                startActivity(intent)
+            }
+
         }
+    }
+
+    private fun setupViewPager(viewPager: ViewPager) {
+        Log.d(TAG, "setupViewPager()")
+        viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
+        viewPagerAdapter.addFragment(MemoryFragment(), getString(R.string.memories))
+        viewPagerAdapter.addFragment(ReminderFragment(), getString(R.string.reminders))
+        viewPagerAdapter.addFragment(KeysFragment(), getString(R.string.keys))
+        viewPager.adapter = viewPagerAdapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -52,37 +88,31 @@ class HomeActivity : AppCompatActivity(), RecordDeleteListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d(TAG, "onOptionsItemSelected()")
+        when (item.itemId) {
+            /*R.id.menu_search -> {
+            }*/
+            R.id.menu_share -> {
+                shareApp()
+            }
+            else -> {
+
+            }
+        }
         return super.onOptionsItemSelected(item)
-        /*   when (item.itemId) {
-               R.id.menu_search -> {
-               }
-               else -> {
+    }
 
-               }
-           }*/
-
+    private fun shareApp() {
+        val sharingIntent = Intent(Intent.ACTION_SEND)
+        sharingIntent.type = "text/plain"
+        val shareBody =
+            "https://play.google.com/store/apps/details?id=${application.packageName}"
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Save My Keys App")
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+        startActivity(Intent.createChooser(sharingIntent, "Share Via :"))
     }
 
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "onResume()")
-        loadData()
     }
-
-    private fun loadData() {
-        Log.d(TAG, "loadData()")
-        recordViewModel.getAllRecords().observe(this,
-            Observer<List<Record>> { t ->
-                recordAdapter!!.setDataToList(t!!)
-                Log.d(TAG, "" + t.size)
-            })
-
-    }
-
-    override fun deleteRecord(record: Record) {
-        Log.d(TAG, "deleteRecord() $record")
-        recordViewModel.delete(record)
-        AppUtils.showSnackBarMessageById(this, coordinator, R.string.recordDeletedSuccessfully)
-    }
-
 }

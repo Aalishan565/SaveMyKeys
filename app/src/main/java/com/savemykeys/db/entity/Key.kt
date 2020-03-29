@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Entity(tableName = "record_table")
-data class Record(
+data class Key(
 
     @ColumnInfo(name = "url") val url: String,
     @ColumnInfo(name = "user_name") val userName: String,

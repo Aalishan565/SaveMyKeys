@@ -5,8 +5,10 @@ import android.util.Log
 import com.savemykeys.utils.AppSharedPreference
 
 class UserRepository(private val context: Context) {
+
     private val TAG = "UserRepository"
     private var appSharedPreference: AppSharedPreference = AppSharedPreference.instance
+
     fun doLogin(pin: String): Boolean {
         Log.d(TAG, "doLogin() $pin")
         return appSharedPreference.getBooleanPref(context, pin)
