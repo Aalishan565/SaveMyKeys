@@ -110,4 +110,9 @@ class MemoryFragment : Fragment(), RecordDeleteListener, SearchView.OnQueryTextL
     private fun showProgressBar() {
         progressBar.visibility = View.VISIBLE
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        rvKeys.adapter=null
+    }
 }

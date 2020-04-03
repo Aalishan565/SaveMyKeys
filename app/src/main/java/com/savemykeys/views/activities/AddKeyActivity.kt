@@ -25,6 +25,7 @@ class AddKeyActivity : AppCompatActivity() {
         Log.d(TAG, "onSupportNavigateUp()")
         onBackPressed()
         return true
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

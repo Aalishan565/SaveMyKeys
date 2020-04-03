@@ -1,5 +1,6 @@
 package com.savemykeys.views.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -17,6 +18,7 @@ import com.savemykeys.viewmodel.KeyViewModel
 import com.savemykeys.views.activities.HomeActivity
 import com.savemykeys.views.adapters.KeyAdapter
 import com.savemykeys.views.listeners.RecordDeleteListener
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_keys.*
 
 class KeysFragment : Fragment(), RecordDeleteListener, SearchView.OnQueryTextListener {
@@ -83,7 +85,7 @@ class KeysFragment : Fragment(), RecordDeleteListener, SearchView.OnQueryTextLis
         showProgressBar()
         Log.d(TAG, "loadData()")
         keyViewModel.getAllKeys().observe(this,
-            Observer<List<Key>> { t ->
+            Observer { t ->
                 hideProgressBar()
                 keyAdapter!!.setDataToList(t!!)
                 Log.d(TAG, "" + t.size)
@@ -109,6 +111,12 @@ class KeysFragment : Fragment(), RecordDeleteListener, SearchView.OnQueryTextLis
 
     private fun showProgressBar() {
         progressBar.visibility = View.VISIBLE
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        rvKeys.adapter=null
     }
 
 

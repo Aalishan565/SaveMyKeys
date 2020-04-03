@@ -82,7 +82,6 @@ class ReminderFragment : Fragment(), RecordDeleteListener, SearchView.OnQueryTex
         return true
     }
 
-
     private fun loadData() {
         showProgressBar()
         Log.d(TAG, "loadData()")
@@ -113,6 +112,11 @@ class ReminderFragment : Fragment(), RecordDeleteListener, SearchView.OnQueryTex
 
     private fun showProgressBar() {
         progressBar.visibility = View.VISIBLE
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        rvKeys.adapter=null
     }
 
 }

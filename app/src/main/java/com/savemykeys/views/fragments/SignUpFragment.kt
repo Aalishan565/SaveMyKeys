@@ -76,7 +76,6 @@ class SignUpFragment : Fragment(), View.OnClickListener {
         }
 
     }
-
 }
 
 
